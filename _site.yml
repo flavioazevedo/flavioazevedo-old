@@ -7,27 +7,31 @@ navbar:
     - text: "Home"
       href: http://flavioazevedo.com/
     - text: "About"
+      icon: fa-user
       href: http://flavioazevedo.com/
     - text: "Blog"
       icon: fa-rss
-      href: https://flavioazevedo.github.io/blog/
-    - text: "Current"
+      href: http://flavioazevedo.com/blog/
+    - text: "Current Projects"
       href: http://flavioazevedo.com/current
-  right:
+    - text: "Past Projects"
+      href: http://flavioazevedo.com/current
     - text: "Statistical Consulting"
       href: http://flavioazevedo.com/statistical-consulting/ 
-    - text: "Contact me"
-      icon: fa-envelope-o
+  right:
+    - text: "Contact"
+      icon: fa-at
       href: mailto:azevedo@wiso.uni-koeln.de 
     - text: "GitHub"
       icon: fa-github
       href: https://github.com/flavioazevedo 
+    - text: "Photography"
+      icon: fa-file-photo-o
+      href: http://flavioazevedo.com/photography
 output:
   html_document:
     theme: lumen
     highlight: zenburn
-    include:
-      after_body: footer.html
     css: styles.css     
       
       
