@@ -5,12 +5,23 @@ navbar:
   type: inverse
   left:
     - text: "Home"
-      href: index.html
+      href: http://flavioazevedo.com/
     - text: "About"
-      href: about.html
+      href: http://flavioazevedo.com/
     - text: "Blog"
       icon: fa-rss
       href: https://flavioazevedo.github.io/blog/
+    - text: "Current"
+      href: http://flavioazevedo.com/current
+  right:
+    - text: "Statistical Consulting"
+      href: http://flavioazevedo.com/statistical-consulting/ 
+    - text: "Contact me"
+      icon: fa-envelope-o
+      href: mailto:azevedo@wiso.uni-koeln.de 
+    - text: "GitHub"
+      icon: fa-github
+      href: https://github.com/flavioazevedo 
 output:
   html_document:
     theme: cosmo
