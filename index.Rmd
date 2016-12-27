@@ -1,5 +1,19 @@
 ---
-title: "My Website"
+title: "Flavio Azevedo"
 ---
 
-Hello, Website! (Index Page)
+### Please go to the updated website here: flavioazevedo.com
+
+I am a Ph.D. candidate at the Graduate School of Cologne University, a German Excellence center. I am affiliated with Cologne's Center for Comparative Politics and Institute of Sociology and Social Psychology.
+
+In my PhD, I use comparative approaches and latent variable modelling to investigate the dispositional and situational  processes underlying ideological subscription. A summary of my doctoral dissertation project can be found [here](http://flavioazevedo.com/phd), while other current (and ongoing) projects are delineated [here](http://flavioazevedo.com/current).
+
+Currently, [I am a visiting scholar (chercheur invité) at Sciences Po](http://www.cevipof.com/fr/l-equipe/les-chercheurs/chercheurs-invites/bdd/equipe/224), CEVIPOF, Paris, France.
+
+Before my PhD, I worked as a researcher at the [Mathematical Institute of Leiden University](https://www.math.leidenuniv.nl/en/home/), the Netherlands. I also assisted on teaching in a variety of statistics related courses at Leiden’s Faculty of Science in both undergraduate and graduate levels. Teaching materials and statistical tutorials can be found here (soon).
+
+Also at Leiden University, I was formally educated in social psychology, political science & statistics. Detailed information are organized on my [vitae](http://flavioazevedo.com/s/CV.pdf).
+
+I have collected interesting references, resources, lists which I have put together for myself on several topics related to statistics, R and methods. These can be found [here](http://flavioazevedo.com/blog/).
+
+Lastly, I worked as a statistical consultant for a number of departments at high-ranking universities. For information on this, please see [here](http://flavioazevedo.com/statistical-consulting/).
