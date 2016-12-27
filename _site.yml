@@ -7,10 +7,8 @@ navbar:
     - text: "Home"
       href: http://flavioazevedo.com/
     - text: "About"
-      icon: fa-user
       href: http://flavioazevedo.com/
     - text: "Blog"
-      icon: fa-rss
       href: http://flavioazevedo.com/blog/
     - text: "Current Projects"
       href: http://flavioazevedo.com/current
