@@ -4,17 +4,13 @@ navbar:
   title: "Flavio Azevedo"
   type: inverse
   left:
-    - text: "Home"
-      href: http://flavioazevedo.com/
     - text: "About"
       href: http://flavioazevedo.com/
     - text: "Blog"
       href: http://flavioazevedo.com/blog/
-    - text: "Current Projects"
+    - text: "Current"
       href: http://flavioazevedo.com/current
-    - text: "Past Projects"
-      href: http://flavioazevedo.com/current
-    - text: "Statistical Consulting"
+    - text: "Consulting"
       href: http://flavioazevedo.com/statistical-consulting/ 
   right:
     - text: "Contact"
@@ -30,6 +26,8 @@ output:
   html_document:
     theme: lumen
     highlight: zenburn
-    css: styles.css     
+    include:
+      after_body: footer.html
+    css: styles.css
       
       
