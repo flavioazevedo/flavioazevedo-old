@@ -21,4 +21,4 @@ I have collected interesting references, resources, lists which I have put toget
 Lastly, I worked as a statistical consultant for a number of departments at high-ranking universities. For information on this, please see [here](http://flavioazevedo.com/statistical-consulting/).
 
 
-<a href="Test.html">Test</a>
+<a href="blog\Test.html">Test</a>
