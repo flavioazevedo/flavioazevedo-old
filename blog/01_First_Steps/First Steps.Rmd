@@ -72,7 +72,7 @@ knitr::include_graphics("compairson.png")
 
 On the off chance that you are wondering whether to learn R or Python, most Statisticians and Data scientists agree that you probably should start with R, and as you go along, Python can be really useful. For example, in case of Deep learning, scripting, and big datasets (> millions cases). One of the best resources discussing this issue freely avaialable is on [datacamp.com.](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.VEYBJyM)
 
-----------------
+
 
 ## 5. Getting Started with R & RStudio: 
 
@@ -104,7 +104,7 @@ RStudio is a great interface that makes R a lot more accessible. RStudio include
 
 If you have RStudio installed, you also want its latest version. Go to Help > Check updates in the menu. 
 
-----------------
+
 
 ## 6. Need more help?
 
