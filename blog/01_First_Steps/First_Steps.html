@@ -862,9 +862,6 @@
   </style>
 </head>
 <body>
-<title>
-Test file
-</title>
 <div id="wrap">
 <div class="container">
 <div class="row row-offcanvas row-offcanvas-right">
@@ -873,11 +870,12 @@ Test file
 
 </div>
 <h1 id="introduction-to-r-statistics">Introduction to R &amp; Statistics</h1>
-<h2 id="first-steps-in-programing-in-r">First steps in programing in R</h2>
-<p>This is the first installment of an &quot;Introduction to R &amp; Statistics&quot; course. Here, we will learn take the first steps in programing in R, as well as run statistical analyses.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Advantages of R</li>
-</ol>
+<p>This is the first installment of &quot;<em>Introduction to R &amp; Statistics</em>&quot; . We will learn the first steps in programing in R, as well as run essential statistical analyses.</p>
+<h2 id="a-bit-of-r-history">1. A bit of R history</h2>
+<p>R is a programming language, a <em>statistical</em> programming language, designed by Ross Ihaka and Robert Gentleman as an implementation of the S programming language.</p>
+<p>Originally, the underlying goal of the researchers of the University of Auckland, New Zealand, was to develop a language that was capable to do data analysis, statistics and graphical models in user-friendly way. The project was first conceived in 1992, with its first version released in 1995 and a stable <em>beta</em> version in 2000. Nowdays, R is the <em>lingua franca of statistics</em>, and it is currently developed by the R Development Core Team, of which Chambers is a member.</p>
+<p>Curiously, R is named partly after the first names of the first two R authors and partly as a play on the name of S.<a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f">ref</a></p>
+<h2 id="advantages-of-r">2. Advantages of R</h2>
 <p>There are many reasons why R is the language of Data Science and Statistics.</p>
 <ol style="list-style-type: decimal">
 <li>It is Free and Open-source.</li>
@@ -888,7 +886,8 @@ Test file
 <li>It is a Programming language based on S, which allows for very fast operations, which is why it is considered to be the <em>language of data science</em>.</li>
 <li>There are several user-interfaces which you can use (e.g., R-Studio, Jupyter)</li>
 </ol>
-<h2 id="advantages-of-r-rstudio">2.1 Advantages of R &amp; RStudio</h2>
+<h2 id="advantages-of-r-with-rstudio">3. Advantages of R with RStudio</h2>
+<p>While R has a command line interface, there are several graphical front-ends available. In this course we will explore RStudio which has many (many!) features that will be useful in learning R. Here's what the partnership between R &amp; Rstudio can do.</p>
 <ol style="list-style-type: decimal">
 <li><a href="http://www.r-graph-gallery.com/">High-end Graphics</a></li>
 <li><a href="https://www.rstudio.com/rviews/2016/11/11/easy-tricks-you-mightve-missed/">User-friendly interface</a></li>
@@ -897,8 +896,8 @@ Test file
 <li><a href="https://www.rstudio.com/some-resources/">Abundant on-line Resources</a></li>
 <li><a href="https://www.rstudio.com/resources/webinars/">Abundant on-line Webnars</a></li>
 </ol>
-<h2 id="r-rstudio-vs.-other-statistical-softwares">2.2 R &amp; RStudio vs. other statistical softwares</h2>
-<p>If you are interested in knowing how much better R (and RStudio) is in compairson to other softwares, <strong><a href="https://en.wikipedia.org/wiki/Comparison_of_statistical_packages">here a good source</a></strong>. I summarized the information contained in the link in the below table.</p>
+<h2 id="r-with-rstudio-vs.-other-statistical-softwares">4. R with RStudio vs. other statistical softwares</h2>
+<p>If you are interested in knowing how R (and RStudio) compare to other software, <a href="https://en.wikipedia.org/wiki/Comparison_of_statistical_packages">here a good source</a>. The information contained in the link is summarized in the below table.</p>
 <div class="row">
 <div class="row">
 <div class="col-md-offset-3 col-md-6">
@@ -906,25 +905,35 @@ Test file
 </div>
 </div>
 </div>
-<p></p>
-<h1 id="getting-started-with-r-rstudio">3. Getting Started with R &amp; RStudio</h1>
-<h2 id="step-1.-downloading-r">Step 1. Downloading R</h2>
-<p>This is the website where you can actually download R, and many of the library packages that are available. Link: http://www.r-project.org/</p>
-<h3 id="step-1.1-updating-r">Step 1.1 Updating R</h3>
-<p>If you have R installed, you want update your R to the latest version. You can do so by running the below code. It will check for newer versions, and if one is available, it will guide you through the decisions you will need to make.</p>
+<h3 id="r-with-rstudio-vs.-python">4.1 R with RStudio vs. Python</h3>
+<p>On the off chance that you are wondering whether to learn R or Python, most Statisticians and Data scientists agree that you probably should start with R, and as you go along, Python can be really useful. For example, in case of Deep learning, scripting, and big datasets (&gt; millions cases). One of the best resources discussing this issue freely avaialable is on <a href="https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.VEYBJyM">datacamp.com.</a></p>
+<hr />
+<h2 id="getting-started-with-r-rstudio">5. Getting Started with R &amp; RStudio:</h2>
+<h3 id="downloading-and-installing-r">5.1 Downloading and Installing R</h3>
+<p>This is the website where you can download R, and many of the library packages that are available.</p>
+<p><a href="http://www.r-project.org/">Link</a></p>
+<h3 id="updating-r">5.2 Updating R</h3>
+<p>If you have R already installed, you want update your R to the latest version. You can do so by running the below code. It will check for newer versions, and if one is available, it will guide you through the decisions you will need to make.</p>
 <div class="row">
-
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">install.packages("installr")  # Install R package that facilitates the process
+library(installr)  # load the package in R
+updateR()  # update R</code></pre>
 </div>
-<h2 id="step-2.-downloading-rstudio">Step 2. Downloading RStudio</h2>
+<h3 id="downloading-rstudio">5.3 Downloading RStudio</h3>
 <p>RStudio is a great interface that makes R a lot more accessible. RStudio includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management.</p>
-<p>Link: http://www.rstudio.com/products/rstudio/download/</p>
-<h3 id="step-2.1-updating-rstudio">Step 2.1 Updating RStudio</h3>
+<p><a href="http://www.rstudio.com/products/rstudio/download/">Link</a></p>
+<h3 id="updating-rstudio">5.4 Updating RStudio</h3>
 <p>If you have RStudio installed, you also want its latest version. Go to Help &gt; Check updates in the menu.</p>
-<h2 id="need-help">Need help?</h2>
-<p><a href="https://www.youtube.com/watch?v=HuyaX7QQRlo">Here's a video depicting the installation of R and RStudio (link)</a>.</p>
+<hr />
+<h2 id="need-more-help">6. Need more help?</h2>
+<p>Here's a video depicting the installation of R and RStudio <a href="https://www.youtube.com/watch?v=HuyaX7QQRlo">(link)</a>.</p>
+<p>If you would like to learn R with video lessons, <a href="http://flavioazevedo.com/stats-and-r-blog/2016/9/13/learning-r-on-youtube">in this page</a> you will find a collection of R online video courseson youtube.</p>
 <p></p>
-<h1 id="rstudio-settings-recommendations">4. RStudio Settings: <em>recommendations</em></h1>
-<p>Before we start the workshop, lets through a number of settings which are worthwhile to know about.</p>
+<h2 id="rstudio-settings-personal-recommendations">7. RStudio Settings: <em>personal recommendations</em></h2>
+<p>Before we start the workshop, lets go through a number of settings which are worthwhile to know about.</p>
 <p>The advantages of these setting will bring us:</p>
 <ul>
 <li>Code completion</li>
@@ -932,19 +941,19 @@ Test file
 <li>Live preview of Rmarkdown documents</li>
 </ul>
 <p>Click on Tools menu, find <em>Global options</em> (last option).</p>
-<h2 id="sub-menu-general-options">Sub-menu: General options</h2>
+<h3 id="sub-menu-general-options">7.1 Sub-menu: General options</h3>
 <ul>
 <li>deselect the Restore .RData into workspace at startup,</li>
 <li>set Save workspace to .RData on exit to Never.</li>
 </ul>
 <p>These options ensure that any content of previous R sessions is never stored or reloaded between R sessions.</p>
-<h2 id="sub-menu-appearance">Sub-menu: Appearance</h2>
+<h3 id="sub-menu-appearance">7.2 Sub-menu: Appearance</h3>
 <ul>
 <li>Set the <em>Editor Theme</em> to some less aggressive to the eyes. I use Chaos, but Cobalt, Idle Fingers, Mervivore Soft, Monokai, Solarized Light and Dark, and Tomorrow Night are also good options.<br />
 </li>
 <li>Set the zoom according to your screen settings. You can also use Font Size to achieve the same result.</li>
 </ul>
-<h2 id="sub-menu-pane-layout">Sub-menu: Pane Layout</h2>
+<h3 id="sub-menu-pane-layout">7.3 Sub-menu: Pane Layout</h3>
 <p>In the Pane layout section of the settings you can switch around the locations of certain user interface elements between the 4 different available panels. Play around a bit with the location and find a setting that works for you, but here's how I think is more intuitive for beginners.</p>
 <ul>
 <li>You want to make only one change: click on the bottom-left &quot;Console&quot; and choose &quot;Environment, History, Build...&quot; option. This should flip these two panels yielding an optimal setting in which you would have all that is &quot;input&quot; on the left, and what is output on the right.</li>
@@ -983,7 +992,7 @@ Toggle
 <li>
 <a class="theme-switch" title="Default" href="#">Default</a>
 </li>
-<li class="active">
+<li>
 <a class="theme-switch" title="Amelia" href="#">Amelia</a>
 </li>
 <li>
@@ -1004,7 +1013,7 @@ Toggle
 <li>
 <a class="theme-switch" title="Readable" href="#">Readable</a>
 </li>
-<li>
+<li class="active">
 <a class="theme-switch" title="Simplex" href="#">Simplex</a>
 </li>
 <li>
@@ -1119,7 +1128,7 @@ Styled with <a href="https://github.com/jimhester/knitrBootstrap">knitrBootstrap
 </p>
 </div>
 </div>
-<link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/amelia/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/sunburst.min.css" media="screen"></link>
+<link rel="stylesheet" id="theme" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" media="screen"></link><link rel="stylesheet" id="highlight" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/sunburst.min.css" media="screen"></link>
 </div>
 </body>
 </html>
