@@ -1,9 +1,14 @@
 ---
 title: ""
 date: "`r Sys.Date()`"
+
 output:
-  rmdformats::readthedown:
-    highlight: kate
+  knitrBootstrap::bootstrap_document:
+    title: "Test file"
+    theme: amelia
+    highlight: sunburst
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
 ---
 
 
@@ -57,7 +62,10 @@ There are many reasons why R is the language of Data Science and Statistics.
 
 If you are interested in knowing how much better R (and RStudio) is in compairson to other softwares, **[here a good source](https://en.wikipedia.org/wiki/Comparison_of_statistical_packages)**. I summarized the information contained in the link in the below table.
 
-![Compairson between most common Statistical Software](compairson.png) 
+```{r Compairson between most common Statistical Software, out.height="210px", fig.align='center', echo=FALSE}
+knitr::include_graphics("compairson.png")
+```
+
 
 \pagebreak
 
