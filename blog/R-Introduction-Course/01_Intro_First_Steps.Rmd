@@ -48,6 +48,9 @@ There are many reasons why R is the language of Data Science and Statistics.
 6. It is a Programming language based on S, which allows for very fast operations, which is why it is considered to be the _language of data science_.
 7. There are several user-interfaces which you can use (e.g., R-Studio, Jupyter)
 
+If you would like a more informative descrition of why you should learn R, there is [one blog post that goes at length in explaining it](http://sharpsightlabs.com/blog/r-recommend-data-science/). [There also this one](http://sharpsightlabs.com/blog/master-r-obsolete/).
+
+
 ## 3. Advantages of R with RStudio
 
 While R has a command line interface, there are several graphical front-ends available. In this course we will explore RStudio which has many (many!) features that will be useful in learning R. Here's what the partnership between R & Rstudio can do.
