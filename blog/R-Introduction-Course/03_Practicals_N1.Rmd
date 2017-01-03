@@ -27,13 +27,17 @@ opts_knit$set(width=75)
 ```
 
 
-## Practical N.1
-
 R commands can sometimes be rather difficult to follow, so occasionally it can be useful to annotate them with comments. This can be done by typing a hash (#) character: any further text on the same line is ignored by R. Copy the code below onto your Source pane (top-left) and run it while reading the comments.
+
+## Practicals 
+
+These are a few exercises that should help you get acquainted with R. You should calculate or evaluate the R expressions before pressing the "R Output button."
+
+If however, you would like to train by yourself, rather than in the website, [here's a link for the R code]() so you can download it and run in your own computer.
 
 ```{r}
 # this is a comment: R will ignore it
-1 + 1 # + 1
+1 + 1 # this queals to two
 
 #The symbol * means multiply, and ^ means "to the power", so this gives 5 times (10 squared), i.e. 500
 5*10^2
@@ -75,4 +79,6 @@ sqrt(0i-9)
 sum(c(1, 2, NULL, 4))
 length(c(1, 2, NULL, 4))
 ```
+
+
 
