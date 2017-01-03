@@ -29,7 +29,7 @@ opts_knit$set(width=75)
 
 In this lesson we learn how to calculate Mathematical expressions, as well as store its results in a R object. In this lesson, all R code is below the R Souce button, while the output is hiden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easilly adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
-# 8. Common Mathematical Expressions
+## 8. Common Mathematical Expressions
 
 Let's start by using R as a simple calculator in the console directly. So, type in the top-right panel the following expression:
 
@@ -119,7 +119,7 @@ month.abb # try: month.name
 LETTERS   # try: letters
 ```
 
-# 9. Objects in R
+## 9. Objects in R
 
 R is what is known as an _"object-oriented"_ language. For example, you can give a name to a mathematical expression, which has the benefit (and effect) of storing it for later use. Indeed, R does not usually display the results of analyses you perform right away like in SPSS, SAS or Stata. Instead, performed analyses are usually stored in an object for later use. For this reason, when doing statistics in R, you will often find yourself naming and storing objects. The name you choose should consist of letters, numbers, and the ".", and it should not start with a number.
 
