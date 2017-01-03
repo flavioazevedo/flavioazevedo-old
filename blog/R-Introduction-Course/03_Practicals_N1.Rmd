@@ -26,14 +26,15 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 
-
-R commands can sometimes be rather difficult to follow, so occasionally it can be useful to annotate them with comments. This can be done by typing a hash (#) character: any further text on the same line is ignored by R. Copy the code below onto your Source pane (top-left) and run it while reading the comments.
+In this lesson we will practice what we learned so far. **Remember**: In this lesson, all R code is below the "R Souce" button, while the output is hiden by default. To see it you will need to click on the "R Output" button. Importantly, at the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easilly adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
 ## Practicals 
 
-These are a few exercises that should help you get acquainted with R. You should calculate or evaluate the R expressions before pressing the "R Output button."
+These are a few exercises that should help you get acquainted with R. You should calculate or evaluate the R expressions before pressing the "R Output" button. 
 
-If however, you would like to train by yourself, rather than in the website, [here's a link for the R code](https://github.com/flavioazevedo/flavioazevedo.github.io/blob/master/blog/R-Introduction-Course/R%20code/Practical_1.R) so you can download it and run in your own computer.
+R commands can sometimes be rather difficult to follow, so occasionally it can be useful to annotate them with comments. This can be done by typing a hash (#) character: any further text on the same line is ignored by R. Copy the code below onto your Source pane (top-left) and run it while reading the comments.
+
+If, however, you would like to train by yourself, rather than in the website, [here's a link for the R code](https://github.com/flavioazevedo/flavioazevedo.github.io/blob/master/blog/R-Introduction-Course/R%20code/Practical_1.R) so you can download it and run in your own computer.
 
 ```{r}
 # this is a comment: R will ignore it
