@@ -170,7 +170,7 @@ height < height.female
 
 ## Advanced Exercises 1
 
-These exercises are slightly adapted (shamelessly copied with minor adjustments) from **[R-exercises](www.r-exercises.com)**, a website that offers many exercises for you to test your R skills. They also offer a [R Course Finder](http://r-exercises.com/r-courses/) which catalogues several R courses on MOOCs (Massive Open Online Courses) such as Coursera and Khan Academy and other online learning platforms (e.g. Udemy, EdX, Lynda.com).
+These exercises are slightly adapted (shamelessly copied with minor adjustments) from **[R-exercises](www.r-exercises.com)**, a website that offers many exercises for you to test your R skills. They also offer a [R Course Finder](http://r-exercises.com/r-courses/) which catalogs several R courses on MOOCs (Massive Open Online Courses) such as Coursera and Khan Academy and other online learning platforms (e.g. Udemy, EdX, Lynda.com).
 
 #### Exercise 1
 
