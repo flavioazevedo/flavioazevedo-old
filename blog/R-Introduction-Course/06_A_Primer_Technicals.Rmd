@@ -1,0 +1,219 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn about the a few technicalities of R which will be necessary so we understand how to deal with data.frames down the line.
+
+Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+## 11. Intro to the technicals
+
+* R is CaSe-SeNsItIvE, e.g., "Gender" is different than "gender"
+* Missing values are coded as NA (i.e., not available)
+
+### Variable types
+
+* **character** - Strings
+* **integer**   - Integers
+* **numeric**   - Integers + Rational + Irrational
+* **factor**    - Categorical variable where each level is a category
+* **logical**   - Boolean
+* **complex**   - Complex numbers
+
+### Data types
+
+* **vector**  - A collection of elements of same class
+* **matrix**  - All columns must uniformly contain only one variable type.
+* **data.frame**  - The columns can contain different classes.
+* **list**  - Can hold objects of different classes and lengths
+
+### Classification of R Objects
+
+This is important to learn and distinguish because in programming in R, you need to know the characteristics of the object you want to manipulate. 
+
+### mode
+
+There are five **main** types (technically "modes") of R objects
+
+* **integer & numeric**: used for quantitative data. Our vector $height$ is numeric.
+* **character**: used for qualitative data. When there is one string like "Hey There Mate" or a website address.
+* **logical**: TRUE or FALSE
+* **list**: special R object ()
+* **function**: sets of instructions contained in a sub program: e.g., mean()
+
+```{r, include=FALSE}
+height <- c(157.9, 172.8, 180.8, 146.5, 174.3)
+```
+
+```{r}
+mode(height)
+```
+
+The mode of the R function $mean()$ is ?
+
+```{r}
+mode(mean)
+```
+
+**In depth knowledge:** 'mode', is a mutually exclusive classification of objects according to their basic structure. An object has one and only one mode. The 'atomic' modes are numeric, complex, character and logical. Recursive objects have modes such as 'list' or 'function' or a few others. The emphasis on **"main"** was given as there are also other types of storage modes (such as raw, complex and others) but we are not going to use them in this course - for more info check $?mode$.
+
+### class
+
+Here are some of common R classes
+
+* integer & numeric
+* character & factor
+* matrix (2D)
+* list & data.frame
+
+**In depth knowledge:** 'class' is a property assigned to an object that determines how generic functions operate with it. It is not a mutually exclusive classification. If an object has no specific class assigned to it, such as a simple numeric vector, it's class is usually the same as its mode, by convention. For more info check $?class$.
+
+```{r, include=FALSE}
+x <- 1               ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- letters         ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- TRUE            ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- cars            ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- cars[1]         ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- cars[[1]]       ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- matrix(cars)    ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- new.env()       ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- expression(1+1) ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- quote(y<-1+1)   ; c(class(x), mode(x), storage.mode(x), typeof(x))
+x <- ls              ; c(class(x), mode(x), storage.mode(x), typeof(x))
+```
+
+```{r, tidy=FALSE}
+x <- 1               ; c(class(x), mode(x))
+x <- letters         ; c(class(x), mode(x))  # creates letters from a to z
+x <- TRUE            ; c(class(x), mode(x))  # logical
+x <- cars            ; c(class(x), mode(x))  # cars is probably the most famous dataset in R
+x <- cars[1]         ; c(class(x), mode(x))  # first collumn of cars dataset
+x <- cars[[1]]       ; c(class(x), mode(x))  # unlist the observations of the first collumn
+x <- matrix(cars)    ; c(class(x), mode(x))  # coerces cars into a matrix
+x <- expression(1+1) ; c(class(x), mode(x))  # calculates the mathematical expression
+x <- quote(y <- 1)   ; c(class(x), mode(x))  # simply returns its argument, which is not evaluated
+x <- mean            ; c(class(x), mode(x))  # 
+```
+
+
+**In depth knowledge:** Optional read & info
+
+There is an excellent discussion on the difference between mode, class, and other characteristics of R objects such as storage.mode and type of [here](http://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r). 
+
+## 12 Useful functions
+
+Here we will learn a few more useful functions in R that will useful to us further along.
+
+### Sequences
+
+```{r}
+# seq() function generates a sequence of numbers.
+seq(from=1, to=9)
+
+# We can ommit the from and to
+seq(1,9)
+
+# We can define the step, increment of sequences(Default is 1)
+seq(1,9, by=2)
+
+# Steps can by any amount
+seq(0,9, by=1.5)
+
+# We can also use length parameter instead, which will equally split our sequence.
+seq(from=1, to=10, length.out=19)
+
+# We can achieve a simpler version of seq with the operator ':'
+0:9
+```
+
+### Repetitions
+
+R also allows you to easily create vectors containing repetitions with the rep() function.
+
+```{r}
+# rep() function replicates the values in x.
+rep(c("Isn't it time for a break?"), times=2)
+
+# We can use to create repetitions of numbers as well 
+rep(5, times=3)
+
+# Or of sequences of numbers
+rep(1:5, times=2)
+
+# We can also use "each" to ask that each element is repeated "each" times.
+rep(1:5, each=2)
+
+#  What would this give?
+rep(rep(4:-5, 5), 2)
+
+# Or this? Try to press "Enter" after each parenthesis and comma so you can isolate each part of the code and better understand it
+rep(rep(seq(1, 10, length.out=25), 2), 3)
+```
+
+## Factors
+
+Factors are variables in R which take on a limited number of different values, such variables are often referred to as categorical variables. For example in cross-national research, "Gender" is usually a variable that can either take "Male" or "Female" values. In R terms, the factor would be called Gender, and it would have two levels, "Male" or "Female".
+
+```{r}
+Gender <- factor(rep(c("Male", "Female"), each=5))
+Gender
+```
+
+Alternatively, we can use the gl() function, which generates factors by specifying the pattern of their levels. Where:
+
+> gl(n, k, length = n*k, labels = 1:n, ordered = FALSE)
+
+* n: number of levels
+* k: number of replications
+* length: length of the result. By default: length = n*k
+* labels: labels for the resulting factor levels
+* ordered: whether the result should be ordered or not
+
+
+```{r}
+Gender <- gl(2, 5, labels = c("Male", "Female"))
+Gender
+```
+
+Let's try creating a factor of 3 colors
+
+```{r}
+gl(n=3, k=1,            labels = c("Brown", "Red", "Green"))
+
+# Now let's use the "k" argument within the gl function
+# to specify the number of replications of each factor level
+gl(n=3, k=2, length=9,  labels = c("Brown", "Red", "Green"))
+
+# Here we see Recycling because we used the "length" argument
+# which gives the length of the wanted result
+gl(n=3, k=1, length=12, labels = c("Brown", "Red", "Green")) 
+
+# We can use rep() and gl() together to achieve a repetion
+# of all factors levels at once, instead of repeating each level 
+rep(gl(n=4, k=1, labels = c("Brown", "Red", "Green", "Yellow")), 3)
+```
+
