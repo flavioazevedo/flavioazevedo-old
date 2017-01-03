@@ -26,7 +26,7 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 
-In this lesson we learn about the a few technicalities of R which will be necessary so we understand how to deal with data.frames down the line.
+In this lesson we learn about the a few technicalities of R which will be necessary so we understand how to deal with data.frames down the line. We will also see several useful functions to program in R.
 
 Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
@@ -124,7 +124,7 @@ x <- mean            ; c(class(x), mode(x))  #
 
 There is an excellent discussion on the difference between mode, class, and other characteristics of R objects such as storage.mode and type of [here](http://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r). 
 
-## 12 Useful functions
+## 12. Useful functions
 
 Here we will learn a few more useful functions in R that will useful to us further along.
 
