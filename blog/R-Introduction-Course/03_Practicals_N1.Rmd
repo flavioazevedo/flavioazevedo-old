@@ -33,7 +33,7 @@ R commands can sometimes be rather difficult to follow, so occasionally it can b
 
 These are a few exercises that should help you get acquainted with R. You should calculate or evaluate the R expressions before pressing the "R Output button."
 
-If however, you would like to train by yourself, rather than in the website, [here's a link for the R code]() so you can download it and run in your own computer.
+If however, you would like to train by yourself, rather than in the website, [here's a link for the R code](https://github.com/flavioazevedo/flavioazevedo.github.io/blob/master/blog/R-Introduction-Course/R%20code/Practical_1.R) so you can download it and run in your own computer.
 
 ```{r}
 # this is a comment: R will ignore it
