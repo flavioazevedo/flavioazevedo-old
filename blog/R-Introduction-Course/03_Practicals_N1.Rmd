@@ -26,7 +26,7 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 
-In this lesson we will practice what we learned so far. **Remember**: In this lesson, all R code is below the "R Souce" button, while the output is hiden by default. To see it you will need to click on the "R Output" button. Importantly, at the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easilly adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+In this lesson we will practice what we learned so far. **Remember**: All R code is below the "R Source" button, while the output is hidden by default. To see it you will need to click on the "R Output" button. Importantly, at the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
 ## Practicals 
 

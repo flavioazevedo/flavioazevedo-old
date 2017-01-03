@@ -1,0 +1,154 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we will learn about vectorized operations. **Remember**: In this lesson, all R code is below the "R Source" button, while the output is hidden by default. To see it you will need to click on the "R Output" button. Importantly, at the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+
+## 10. Vectorized operations (Element-wise operations) and vector variables
+
+While R would make a great calculator, it is designed to help statisticians and data scientists deal with data. And data never comes with one data point point. Instead, data usually comes with several observations at a time for a given variable. So we are going to learn how to deal with these R objects.
+
+Say I am interested in the relationship between height, weight, and gender of students with respect to the number of R workshops each student has taken. So I take a sample of size 10 out of the students population and I measure these students' height, weight, and ask about they gender, and how many R courses/workshops they attended. Then our data would look like this: 
+
+```{r, echo=FALSE}
+set.seed(1234)
+data <- data.frame(
+  Names   = c("Alan", "Brian", "Carlos", "Dalton", "Ethan", "Flora", "Gaia", "Helen", "Ingrid", "Jennifer"),
+  Age     = rpois(10, 30),
+  Height  = rnorm(10, 170, 10),
+  Weight  = rnorm(10, 70, 15),
+  Gender  = gl(2, 5, labels = c("Male", "Female")),
+  Courses = rpois(10, 2)
+)
+knitr::kable(data, digits = 1, format = "html", caption = "Our Workshop Sample", align='c',padding = 2)
+# height <- data$Height[data$Gender == 'Male']
+```
+
+In analyzing a data-set, we are often interested in conducting operations for a whole set of numbers of a given variable (which we can call **vectors**). A vector can contain numbers, strings, logical values, or any other type. For example, if we take our participants _Height_, it would be an example of a numeric vector. If we take our participants' _Gender_, it would be an example of a string vector. In this way, one can build a data-set with several vectors.
+
+Let's focus on male students' heights as our example. Suppose we are interested in their Arithmetic mean, how can we calculate it in R? Here's the formula: $$\frac{1}{n} \sum_{i=i}^{n} x_{i}$$
+
+The first thing we need to do - according to the formula - is to add all the heights. So lets... 
+
+```{r, eval=FALSE}
+157.9 + 172.8 + 180.8 + 146.5 + 174.3
+```
+
+... then we need to divide this sum by the number of observations, which is 5. So, what is the mean height of male students in our sample?
+
+```{r, eval=FALSE}
+(157.9 + 172.8 + 180.8 + 146.5 + 174.3)/5
+```
+
+Now, let's do the same operation using a vector. In the previous section we learned how to store a mathematical expression into an object. Now, we are going to store more than one piece of data into an object (i.e., vector). So first, we need to name our vector, let's call it "height". And it will receive all five values. In R, we do this by "combining" or "concatenating" several values, so we use the "c" in front of a parenthesis, with values separated by commas.
+
+```{r, eval=FALSE}
+height <- c(157.9, 172.8, 180.8, 146.5, 174.3)
+```
+
+Let's check if we created our vector correctly.
+
+```{r, eval=FALSE}
+height
+```
+
+Now that we created our vector, we can do the same operations we did above for our _height_ vector. This is one of the main advantages or R over other statistical software. 
+
+So, type in your Source panel (top-left) the following expressions:
+
+Multiplication
+
+```{r, eval=FALSE}
+height * 2
+```
+
+Division
+
+```{r, eval=FALSE}
+height / 2
+```
+
+Exponentiation
+
+```{r, eval=FALSE}
+height ^ 2
+```
+
+Vectorized operations are one of the most important strengths of R because it facilitates immensely the process of dealing with data. For example, if we wanted to calculate the mean of height for males, all we have to do is to know the function in R that calculates the: mean(), and put our vector inside it.
+
+```{r, eval=FALSE}
+mean(height)
+```
+
+Variance
+
+```{r, eval=FALSE}
+var(height)
+```
+
+Standard Deviation
+
+```{r, eval=FALSE}
+sd(height)
+```
+
+Median
+
+```{r, eval=FALSE}
+median(height)
+```
+
+Range
+
+```{r, eval=FALSE}
+range(height)
+```
+
+Summary
+
+```{r, eval=FALSE}
+summary(height)
+```
+
+We can also do regular operations with vectors without naming them
+
+```{r, eval=FALSE}
+c(1, 2, 3, 4, 5) * 2
+```
+
+Can you guess which mathematical operation the below code is yielding?
+
+```{r, eval=FALSE}
+c(1, 2, 3, 4, 5) * c(1, 2, 3, 4, 5)
+```
+
+Can you guess which mathematical operation the below code is yielding?
+
+```{r, eval=FALSE}
+height - c(1, 2, 3, 4, 5) * c(1, 2, 3, 4, 5)
+```

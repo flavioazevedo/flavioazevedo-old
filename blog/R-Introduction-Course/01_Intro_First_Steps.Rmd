@@ -26,13 +26,13 @@ opts_chunk$set(echo=FALSE,
 opts_knit$set(width=75)
 ```
 
-This is the first installment of "*Introduction to R & Statistics*" . We will learn the first steps in programing in R, as well as run essential statistical analyses.
+This is the first installment of "*Introduction to R & Statistics*" . We will learn the first steps in programming in R, as well as run essential statistical analyses.
 
 ## 1. A bit of R history 
 
 R is a programming language, a *statistical* programming language, designed by Ross Ihaka and Robert Gentleman as an implementation of the S programming language. 
 
-Originally, the underlying goal of the researchers of the University of Auckland, New Zealand, was to develop a language that was capable to do data analysis, statistics and graphical models in user-friendly way. The project was first conceived in 1992, with its first version released in 1995 and a stable *beta* version in 2000. Nowdays, R is the *lingua franca of statistics*, and it is currently developed by the R Development Core Team, of which Chambers is a member.
+Originally, the underlying goal of the researchers of the University of Auckland, New Zealand, was to develop a language that was capable to do data analysis, statistics and graphical models in user-friendly way. The project was first conceived in 1992, with its first version released in 1995 and a stable *beta* version in 2000. Noways, R is the *lingua franca of statistics*, and it is currently developed by the R Development Core Team, of which Chambers is a member.
 
 Curiously, R is named partly after the first names of the first two R authors and partly as a play on the name of S.[ref](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-is-R-named-R_003f)
 
@@ -70,7 +70,7 @@ knitr::include_graphics("files/compairson.png")
 
 ### 4.1 R with RStudio vs. Python
 
-On the off chance that you are wondering whether to learn R or Python, most Statisticians and Data scientists agree that you probably should start with R, and as you go along, Python can be really useful. For example, in case of Deep learning, scripting, and big datasets (> millions cases). One of the best resources discussing this issue freely avaialable is on [datacamp.com.](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.VEYBJyM)
+On the off chance that you are wondering whether to learn R or Python, most Statisticians and Data scientists agree that you probably should start with R, and as you go along, Python can be really useful. For example, in case of Deep learning, scripting, and big data-sets (> millions cases). One of the best resources discussing this issue freely available is on [datacamp.com.](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.VEYBJyM)
 
 
 
@@ -94,7 +94,7 @@ updateR() # update R
 
 ### 5.3 Downloading RStudio
 
-RStudio is a great interface that makes R a lot more accessible. RStudio includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and workspace management. 
+RStudio is a great interface that makes R a lot more accessible. RStudio includes a console, syntax-highlighting editor that supports direct code execution, as well as tools for plotting, history, debugging and work-space management. 
 
 [Link](http://www.rstudio.com/products/rstudio/download/)
 
@@ -111,7 +111,7 @@ If you have RStudio installed, you also want its latest version. Go to Help > Ch
 Here's a video depicting the installation of R and RStudio
 [(link)](https://www.youtube.com/watch?v=HuyaX7QQRlo). 
 
-If you would like to learn R with video lessons, [in this page](http://flavioazevedo.com/stats-and-r-blog/2016/9/13/learning-r-on-youtube) you will find a collection of R online video courseson youtube.
+If you would like to learn R with video lessons, [in this page](http://flavioazevedo.com/stats-and-r-blog/2016/9/13/learning-r-on-youtube) you will find a collection of R online video courses on YouTube.
 
 \pagebreak
 
@@ -123,14 +123,14 @@ The advantages of these setting will bring us:
 
 * Code completion
 * Inline documentation
-* Live preview of Rmarkdown documents
+* Live preview of R markdown documents
 
 Click on Tools menu, find _Global options_ (last option).
 
 ### 7.1 Sub-menu: General options
 
-* deselect the Restore .RData into workspace at startup,
-* set Save workspace to .RData on exit to Never.
+* deselect the Restore .RData into work-space at start-up,
+* set Save work-space to .RData on exit to Never.
 
 These options ensure that any content of previous R sessions is never stored or reloaded between R sessions.
 

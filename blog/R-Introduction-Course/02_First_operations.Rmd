@@ -27,7 +27,7 @@ opts_chunk$set(echo=TRUE,
 opts_knit$set(width=75)
 ```
 
-In this lesson we learn how to calculate Mathematical expressions, as well as store its results in a R object. In this lesson, all R code is below the R Souce button, while the output is hiden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easilly adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+In this lesson we learn how to calculate Mathematical expressions, as well as store its results in a R object. In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
 ## 8. Common Mathematical Expressions
 
@@ -79,13 +79,13 @@ Use round brackets to group operations so that they are carried out first
 (100+2)/3  
 ```
 
-What would happen if the round brackets were ommited?
+What would happen if the round brackets were omitted?
 
 ```{r}
 100+2/3  
 ```
 
-The argument of a fuction can contain arithmetic operations or mathematical expressions
+The argument of a function can contain arithmetic operations or mathematical expressions
 
 ```{r}
 sqrt(25-9)
@@ -97,13 +97,13 @@ Note that in R, you should only use parenthesis (or round brackets) but not squa
 sqrt(((((7*8 + 1)/3) * 1/2)^2)*4)
 ```
 
-Another way to ask for R to evaluate (calculate) an expression or piece of code is to select it, and click on the _Run_ button on the right side of the first pane. Or, while selected, press _Ctrl + Enter_ on your keyboard. Let's see if we can reproduce the following expression in the "Source" pane (top-left), if you do it correcly, you should find 0.2193828. $$[ (2^3 - 1) - log(10) ] / (3 + \sqrt{7^3 - 4})$$
+Another way to ask for R to evaluate (calculate) an expression or piece of code is to select it, and click on the _Run_ button on the right side of the first pane. Or, while selected, press _Ctrl + Enter_ on your keyboard. Let's see if we can reproduce the following expression in the "Source" pane (top-left), if you do it correctly, you should find 0.2193828. $$[ (2^3 - 1) - log(10) ] / (3 + \sqrt{7^3 - 4})$$
 
 ```{r, include=FALSE}
 ((2^3 - 1) - log(10)) / (3 + sqrt(7^3 - 4)) 
 ```
 
-Laslty, there are some named objects that R provides you, like the constant $\pi$ or Month names and letters.
+Lastly, there are some named objects that R provides you, like the constant $\pi$ or Month names and letters.
 
 ```{r}
 pi
