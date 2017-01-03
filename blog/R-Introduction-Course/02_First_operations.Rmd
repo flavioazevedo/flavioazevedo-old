@@ -139,7 +139,7 @@ In order to see the result, you run the name of the object
 x
 ```
 
-Store the number 0.0001 under the name "small.num" (i.e. put 0.0001 into small.num)
+Store the number 0.0001 under the name "small.num" (i.e. put 0.0001 into small.num). Note that R does not produce any output.
 
 ```{r}
 0.001 -> small.num                
@@ -158,10 +158,10 @@ big.num <- 10 * 100
 big.num
 ```
 
-A third way this is done is by using the equal sign like this
+A third way this is done is by using the equal sign like this.
 
 ```{r}
 normal.num = sqrt(100*(12^2))/30
 ```
 
-#### **Scalar Variables**. Every object in R has a type - all the variables we created are termed scalar. Scalar variable is a single number variable. x is a scalar variable whose value is 103, small.num is a scalar variable whose value is 0.001 and so forth.
+Every object in R has a type - all the variables we created are termed scalar. Scalar variable is a single number variable. x is a scalar variable whose value is 103, small.num is a scalar variable whose value is 0.001 and so forth.
