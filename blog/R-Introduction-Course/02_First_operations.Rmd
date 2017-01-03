@@ -109,9 +109,11 @@ Laslty, there are some named objects that R provides you, like the constant $\pi
 pi
 ```
 
+
 ```{r}
 month.abb # try: month.name
 ```
+
 
 ```{r}
 LETTERS   # try: letters

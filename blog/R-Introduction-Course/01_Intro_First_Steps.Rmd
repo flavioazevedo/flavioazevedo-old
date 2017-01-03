@@ -65,7 +65,7 @@ While R has a command line interface, there are several graphical front-ends ava
 If you are interested in knowing how R (and RStudio) compare to other software, [here a good source](https://en.wikipedia.org/wiki/Comparison_of_statistical_packages). The information contained in the link is summarized in the below table.
 
 ```{r Compairson between most common Statistical Software, out.height="210px", fig.align='center', echo=FALSE}
-knitr::include_graphics("compairson.png")
+knitr::include_graphics("files/compairson.png")
 ```
 
 ### 4.1 R with RStudio vs. Python
@@ -146,6 +146,6 @@ In the Pane layout section of the settings you can switch around the locations o
 * You want to make only one change: click on the bottom-left "Console" and choose "Environment, History, Build..." option. This should flip these two panels yielding an optimal setting in which you would have all that is "input" on the left, and what is output on the right.
 
 ```{r, out.height="210px", fig.align='center', echo=FALSE}
-knitr::include_graphics("printscreen.png")
+knitr::include_graphics("files/printscreen.png")
 ```
 
