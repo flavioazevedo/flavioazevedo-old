@@ -871,8 +871,8 @@
 </div>
 <p>In this lesson we learn about datasets. How to create and manipulate it.</p>
 <p>Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green &quot;R Output&quot; button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find &quot;Code highlighting&quot; which changes how R code is displayed to you, and Toggle R code and Figures.</p>
-<h2 id="datasets">12. Datasets</h2>
-<h3 id="creating-data">12.1 Creating data</h3>
+<h2 id="datasets">14. Datasets</h2>
+<h3 id="creating-data">14.1 Creating data</h3>
 <p>Often it is useful to learn how to create a dataset in R. Above we created one, which we will reproduce the code here. A dataset can be created in R with the function data.frame(), and we fill it with the variables we would like to create. We conviniently named our dataset <em>data</em>. Note that after we specified the function data.frame(), we can give each of the variables its own name. After that, we assign to that name our wanted values.</p>
 <p>We use set.seed() because it is a function in R that allows all 'pseudo-random' fuctions in R to yield the same results in different computers. It has the purpose of reproducibility. Otherwise, all of you would have different values for the pseudo-random values. Cool, right?</p>
 <div class="row">
@@ -975,7 +975,7 @@ data <- data.frame(
 <p>Error in data.frame(Names = c(&quot;Alan&quot;, &quot;Brian&quot;, &quot;Carlos&quot;, &quot;Dalton&quot;, &quot;Ethan&quot;, : arguments imply differing number of rows: 9, 10</p>
 </blockquote>
 <p>R is telling you where specifically - out of all your variables - the error is occuring , and also, its reason: &quot;<em>arguments imply differing number of rows: 9, 10</em>&quot;. In my eyes, it even gives you the solution: There are nine rows, but we need 10 to make it work.</p>
-<h3 id="indexing-or-data-manipulation">12.2 Indexing [or Data Manipulation]</h3>
+<h3 id="indexing-or-data-manipulation">14.2 Indexing [or Data Manipulation]</h3>
 <p>Indexing is to select/subset parts of R objects. Let's take our data example to learn about indexing. There are many ways to do this. We will see several methods here, although they are not exhaustive.</p>
 <p>If we want to select only the Number of R Courses people have attended in the past, we use the operators '$' between the name of the data.frame and the name of the variable. (Note, it is important of this type of subsetting that there are no spaces in the variable's name - e.g., &quot;Students names&quot;, rather choose either Students.names or Students_names).</p>
 <div class="row">
@@ -1167,8 +1167,8 @@ data <- data.frame(
 </code></pre>
 </div>
 <p></p>
-<h2 id="indexing-vectors">12.3 Indexing vectors</h2>
-<p>Remember we created three vectors above, <em>n.R.courses</em>, <em>height</em> and <em>height.female</em>. Lets use these to learn how to index vectors.</p>
+<h2 id="indexing-vectors">14.3 Indexing vectors</h2>
+<p>Remember we created three vectors called <em>n.R.courses</em>, <em>height</em> and <em>height.female</em> on lesson 04 and 05 ? Lets use these to learn how to index vectors.</p>
 <p>If I would like to select my first observation of <em>n.R.courses</em>, I make use of square brackets.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1265,7 +1265,7 @@ data <- data.frame(
 <pre style="display:none"><code class="output r">[1] 2 3 5
 </code></pre>
 </div>
-<h2 id="understanding-your-data">10.4 Understanding your data</h2>
+<h2 id="understanding-your-data">14.4 Understanding your data</h2>
 <p>Let's assume we received this data from someone, and we have to analyize it. One of the first thing you need to do is to <em>understand</em> the basic characteristics of your data. How many variables/collums does it have? How many observations? What are the characteristics of each variable? And so on.</p>
 <h3 id="dimensions">Dimensions</h3>
 <p>Here you are asking R to return the number of rows and collumns.</p>
@@ -1503,20 +1503,6 @@ Female           5         50
 <p class="navbar-text">
 Toggle
 </p>
-</li>
-<li class="dropup">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li class="dropdown-header">
-Languages
-</li>
-<li class="active">
-<a href="#" class="toggle-global source R" type="source.R">R</a>
-</li>
-<li>
-<a href="#" type="all-source" class="toggle-global">All</a>
-</li>
-</ul>
 </li>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>

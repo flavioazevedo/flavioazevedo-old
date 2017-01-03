@@ -30,9 +30,9 @@ In this lesson we learn about datasets. How to create and manipulate it.
 
 Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
-## 12. Datasets
+## 14. Datasets
 
-### 12.1 Creating data
+### 14.1 Creating data
 
 Often it is useful to learn how to create a dataset in R. Above we created one, which we will reproduce the code here. A dataset can be created in R with the function data.frame(), and we fill it with the variables we would like to create. We conviniently named our dataset _data_. Note that after we specified the function data.frame(), we can give each of the variables its own name. After that, we assign to that name our wanted values.
 
@@ -91,7 +91,7 @@ Important note. All variables must have the same number of observations. In our 
 
 R is telling you where specifically - out of all your variables - the error is occuring , and also, its reason: "_arguments imply differing number of rows: 9, 10_". In my eyes, it even gives you the solution: There are nine rows, but we need 10 to make it work. 
 
-### 12.2 Indexing [or Data Manipulation]
+### 14.2 Indexing [or Data Manipulation]
 
 Indexing is to select/subset parts of R objects. Let's take our data example to learn about indexing. There are many ways to do this. We will see several methods here, although they are not exhaustive.
 
@@ -151,9 +151,9 @@ subset(data, Courses != 0 & Gender == "Female" & Age > 24)
 
 \pagebreak
 
-## 12.3 Indexing vectors
+## 14.3 Indexing vectors
 
-Remember we created three vectors above, _n.R.courses_, _height_ and _height.female_. Lets use these to learn how to index vectors.
+Remember we created three vectors called _n.R.courses_, _height_ and _height.female_ on lesson 04 and 05 ? Lets use these to learn how to index vectors.
 
 If I would like to select my first observation of _n.R.courses_, I make use of square brackets.
 
@@ -203,7 +203,7 @@ Now, what if I would like to know which is the location in of observed heights a
 which(height > 170)
 ```
 
-## 10.4 Understanding your data
+## 14.4 Understanding your data
 
 Let's assume we received this data from someone, and we have to analyize it. One of the first thing you need to do is to _understand_ the basic characteristics of your data. How many variables/collums does it have? How many observations? What are the characteristics of each variable? And so on. 
 
