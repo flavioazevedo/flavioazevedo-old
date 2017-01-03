@@ -30,7 +30,7 @@ In this lesson we learn about generating "random" numbers in R.
 
 Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
 
-## Generating "Random" Numbers
+## 13. Generating "Random" Numbers
 
 The random word is between quotes above because R - or any software - cannot really generate truly random numbers. It gets really close though. This is because softwares use an algorithm for generating a sequence of numbers whose properties approximate the properties of sequences of random numbers. This is termed a pseudorandom number generator, which is not _truly_ random, because it is completely determined by a relatively small set of initial values, called the seed. 
 
@@ -108,7 +108,7 @@ Geometric | rgeom
 
 If you want to generate a decimal number where any value (including fractional values) between the stated minimum and maximum is equally likely, the runif() function is what you are looking for.This function generates values from the Uniform distribution. Here's how to generate one random number between 0 and 1:
 
-```{r, eval=FALSE}
+```{r}
 runif(1, min=0, max=1)
 ```
 
@@ -116,15 +116,52 @@ Of course, when you run this, you'll get a different number, but it will definit
 
 If you want to generate multiple random values, you can generate several values at once by specifying the number of values you want as the first argument to runif.  Here's how to generate 10 values between 0 and 1.
 
-```{r, eval=FALSE}
+```{r}
 runif(10, 0, 1)
 ```
 
 **The Normal Distribution**
 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mi>&#x03D5;<!-- ϕ --></mi>
+  <mo stretchy="false">(</mo>
+  <mi>z</mi>
+  <mo stretchy="false">)</mo>
+  <mo>=</mo>
+  <mfrac>
+    <mn>1</mn>
+    <msqrt>
+      <mn>2</mn>
+      <mspace width="thinmathspace" />
+      <mi>&#x03C0;<!-- π --></mi>
+    </msqrt>
+  </mfrac>
+  <msup>
+    <mi>e</mi>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mo>&#x2212;<!-- − --></mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>2</mn>
+      </mfrac>
+      <msup>
+        <mi>z</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </msup>
+  <mo>,</mo>
+  <mspace width="1em" />
+  <mi>z</mi>
+  <mo>&#x2208;<!-- ∈ --></mo>
+  <mrow class="MJX-TeXAtom-ORD">
+    <mi mathvariant="double-struck">R</mi>
+  </mrow>
+</math>
+
 To generate numbers from a normal distribution, use rnorm().
 
-```{r, eval=FALSE }
+```{r, bootstrap.show.output=FALSE}
 # By default the mean is 0 and the standard deviation is 1
 rnorm(1)
 rnorm(5)
@@ -136,7 +173,7 @@ rnorm(5, mean=5, sd=3)
 rnorm(100, mean=10, sd=10)
 
 # Check that the distribution looks right, make a histogram of the numbers
-hist(rnorm(100, mean=10, sd=10))
+hist(rnorm(100, mean=10, sd=10), breaks = 10)
 ```
 
 **The Poisson Distribution**
@@ -149,7 +186,50 @@ To generate numbers from a poisson distribution, use rpois(). The Poisson distri
 
 In probability theory, a Poisson process is a stochastic process that counts the number of independent events in a given time interval. The Poisson distribution can also be used for the number of events in other specified intervals such as distance, area or volume.
 
-```{r, eval=FALSE }
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>p</mi>
+  <mo stretchy="false">(</mo>
+  <mi>x</mi>
+  <mo>;</mo>
+  <mi>&#x03BB;<!-- λ --></mi>
+  <mo stretchy="false">)</mo>
+  <mo>=</mo>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>e</mi>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mo>&#x2212;<!-- − --></mo>
+          <mi>&#x03BB;<!-- λ --></mi>
+        </mrow>
+      </msup>
+      <msup>
+        <mi>&#x03BB;<!-- λ --></mi>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mi>x</mi>
+        </mrow>
+      </msup>
+    </mrow>
+    <mrow>
+      <mi>x</mi>
+      <mo>!</mo>
+    </mrow>
+  </mfrac>
+  <mstyle displaystyle="false" scriptlevel="0">
+    <mtext>&#xA0;for&#xA0;</mtext>
+  </mstyle>
+  <mi>x</mi>
+  <mo>=</mo>
+  <mn>0</mn>
+  <mo>,</mo>
+  <mn>1</mn>
+  <mo>,</mo>
+  <mn>2</mn>
+  <mo>,</mo>
+  <mo>&#x22EF;<!-- ⋯ --></mo>
+</math>
+
+```{r, bootstrap.show.output=FALSE}
 # 
 rpois(10, 1)
 rpois(10, 4)
@@ -162,13 +242,13 @@ rpois(10, lambda=5)
 hist(rpois(1000, lambda=1), breaks = 5)
 ```
 
-## 8.5 Wrap-up Exercise 
+## 13.1 Wrap-up Exercise 
 
 Let's say I have a categorical variable which can take the values A, B, C and D. How can I generate 10000 random data points and control for the frequency of each? For example: A = 10% B = 20% C = 65% D = 5%. Any ideas how to do this? Don't fret if you have no ideas. I didn't when I first tried to solve it. But it helped me a great deal to practice the skills I learned and how they can be useful.
 
 ### Solution 1: Elegant and quickest 
 
-```{r, eval=FALSE }
+```{r, bootstrap.show.code=FALSE}
 sample(LETTERS[1:4], 10000, replace=TRUE, prob=c(0.1, 0.2, 0.65, 0.05))
 
 # But how do I know it is right? Save it to a 'vector' named x
@@ -183,7 +263,7 @@ prop.table(table(x))
 
 ### Solution 2: Clever, but dirty 
 
-```{r, eval=FALSE, tidy=FALSE }
+```{r, tidy=FALSE, bootstrap.show.code=FALSE}
 x <- sample(c(rep("A", 0.1*10000), 
               rep("B", 0.2*10000),
               rep("C", 0.65*10000), 
@@ -200,7 +280,7 @@ prop.table(table(x))
 
 ### Solution 3: Brute force (reversed thinking?)
 
-```{r, eval=FALSE, tidy=FALSE }
+```{r, tidy=FALSE, bootstrap.show.code=FALSE }
 x <- runif(10000) # Why use runif()? Hint: what it is the function's default?
 
 # Now we rename x values
@@ -212,5 +292,3 @@ x[x >  0.95 & x <= 1]    <- "D"
 # Check
 prop.table(table(x))
 ```
-
-Although sequences that are closer to truly random can be generated using hardware random number generators, pseudorandom number generators are important in practice for their speed in number generation and their reproducibility.[2]

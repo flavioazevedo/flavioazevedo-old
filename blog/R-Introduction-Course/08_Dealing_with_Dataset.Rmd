@@ -1,0 +1,275 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn about datasets. How to create and manipulate it.
+
+Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+## 12. Datasets
+
+### 12.1 Creating data
+
+Often it is useful to learn how to create a dataset in R. Above we created one, which we will reproduce the code here. A dataset can be created in R with the function data.frame(), and we fill it with the variables we would like to create. We conviniently named our dataset _data_. Note that after we specified the function data.frame(), we can give each of the variables its own name. After that, we assign to that name our wanted values.
+
+We use set.seed() because it is a function in R that allows all 'pseudo-random' fuctions in R to yield the same results in different computers. It has the purpose of reproducibility. Otherwise, all of you would have different values for the pseudo-random values. Cool, right?
+
+
+```{r, tidy=FALSE}
+set.seed(1234)
+
+data <- data.frame(                                             
+  Names   = c("Alan", "Brian", "Carlos", "Dalton", "Ethan", 
+              "Flora", "Gaia", "Helen", "Ingrid", "Jennifer"),
+  Age     = rpois(10, 30),
+  Height  = rnorm(10, 170, 10),
+  Weight  = rnorm(10, 70, 15),
+  Gender  = gl(2, 5, labels = c("Male", "Female")),
+  Courses = rpois(10, 2)
+)
+```
+
+```{r, include=FALSE}
+height <- c(157.9, 172.8, 180.8, 146.5, 174.3)
+height.female <- data$Height[6:10]
+n.R.courses <- data$Courses
+```
+
+Now, we print our dataset in the R console with the function print()
+
+```{r}
+print(data)
+data
+```
+
+We can also print only the first three observations, to inspect big datasets.
+
+```{r}
+head(data, 3)
+```
+
+Or alternatevely, we can also print the last 4 rows to see whether we created the data well.
+
+```{r}
+tail(data, 4)
+```
+
+Importantly, you can explore your data in a new window with the command View(). Note that there are two buttons on the left hand side: one which will pop-up the data in a new window, and the other that you can use to filter the cases you are interested in specting.
+
+```{r, eval=FALSE}
+View(data)
+```
+
+Important note. All variables must have the same number of observations. In our case, 10. If I put one less name (I forgot to include Jennifer) it would give an error and the dataset would not be created. For example, in that case the following error would be returned:
+
+>  Error in data.frame(Names = c("Alan", "Brian", "Carlos", "Dalton", "Ethan",  : 
+  arguments imply differing number of rows: 9, 10
+
+R is telling you where specifically - out of all your variables - the error is occuring , and also, its reason: "_arguments imply differing number of rows: 9, 10_". In my eyes, it even gives you the solution: There are nine rows, but we need 10 to make it work. 
+
+### 12.2 Indexing [or Data Manipulation]
+
+Indexing is to select/subset parts of R objects. Let's take our data example to learn about indexing. There are many ways to do this. We will see several methods here, although they are not exhaustive.
+
+If we want to select only the Number of R Courses people have attended in the past, we use the operators '$' between the name of the data.frame and the name of the variable. (Note, it is important of this type of subsetting that there are no spaces in the variable's name - e.g., "Students names", rather choose either Students.names or Students_names).
+
+```{r}
+data$Courses
+```
+
+Another way to do the same thing is to make reference to the dimensionality of the data. When we use this method, we utilize squared brackets in R: [] or [[]]. We know our data has 10 rows and 6 collumns. So the data dimensions are 10 x 6. So, if I want only Gender, which is the sixth collumn, I can select it by typping:   
+
+```{r}
+data[, 6]
+```
+
+In the same way, if we are interested in all the data collected for Carlos, we can select it by typping:
+
+```{r}
+data[3, ]
+```
+
+Consequently, if we want to know how many R courses Carlos has taken in the past, we can select it by typping:
+
+```{r}
+data[3, 6]
+```
+
+Now let's expand this a little bit by using logical conditions to select more complex subsets of data. For example, if we are interested in subsetting the data for Females or for those are older than 25 years. So, let's start by selecting the observations for females. So, we need to say to R that we want all rows that fulfill the 'Gender = Female' condition. So, in R terms, we want all rows which the value for Gender is equal to Female. We translate this in the following way: data$Gender == 'Female'. 
+
+```{r}
+data[data$Gender=='Female', ]
+```
+
+If we want older than 25 years old
+
+```{r}
+data[data$Age > 25, ]
+```
+
+And, if we want both, Female and older than 25 years old
+
+```{r}
+data[data$Gender=='Female' & data$Age > 25, ]
+```
+
+Another method is to uset the subset() function in R. The subset function is available in base R and can be used to return subsets of a vector, martix, or data frame which meet a particular condition.
+
+```{r}
+subset(data, Courses > 1)
+subset(data, Height < 178 & Weight > 65)
+subset(data, Age >29)
+subset(data, Age < 23 | Courses > 5)
+subset(data, Names == "Gaia")
+subset(data, Gender == "Male", select=c(Age, Courses))
+subset(data, Courses != 0 & Gender == "Female" & Age > 24)
+```
+
+\pagebreak
+
+## 12.3 Indexing vectors
+
+Remember we created three vectors above, _n.R.courses_, _height_ and _height.female_. Lets use these to learn how to index vectors.
+
+If I would like to select my first observation of _n.R.courses_, I make use of square brackets.
+
+```{r}
+n.R.courses[1]
+```
+
+If I would like to select my first and my second observations of _n.R.courses_, I make use of the ':' opperator, which denotes sequence. So, for R, I am effectively telling it I want observations from 1 to 2.
+
+```{r}
+n.R.courses[1:2]
+```
+
+What if I would like to select my first and my third observations of _n.R.courses_? Since you cannot use ':', you want to combine with the c() function the wanted observations.
+
+```{r}
+n.R.courses[c(1,3)]
+```
+
+What if I would like to select my first, my third through fifth observations of _n.R.courses_?
+
+```{r}
+n.R.courses[c(1,3:5)]
+```
+
+What if I would like to know which are the observed heights are taller than 170 cm? In this case we can make use of logical opperators. As reviewed above, we saw that logical operations return either TRUE or FALSE. So, we can use this as to 'select' the observations we want given a condition. So we just write it as above:
+
+```{r}
+height > 170
+```
+
+Then, we put this condition inside the vector, which will return what we want.
+
+```{r}
+height[height > 170]
+```
+
+This is similar, inside R, as this:
+
+```{r}
+height[c(FALSE, TRUE, TRUE, FALSE, TRUE)]
+```
+
+Now, what if I would like to know which is the location in of observed heights are taller than 170 cm?
+
+```{r}
+which(height > 170)
+```
+
+## 10.4 Understanding your data
+
+Let's assume we received this data from someone, and we have to analyize it. One of the first thing you need to do is to _understand_ the basic characteristics of your data. How many variables/collums does it have? How many observations? What are the characteristics of each variable? And so on. 
+
+### Dimensions
+
+Here you are asking R to return the number of rows and collumns.
+
+```{r}
+dim(data)
+```
+
+### Variable names
+
+Here you are asking R to return the names of each variable in your dataset.
+
+```{r}
+names(data)
+colnames(data)
+```
+
+### Variables classes
+
+Here you get class of all the variables (columns) in your dataset
+
+```{r}
+sapply(data, class) 
+```
+
+### Structure of the data
+
+Here you are asking R to return the characteristics of each variable in your dataset. It shows a summary of each variable, and the first observations. For example, it tells us that there are _10 obs. of  6 variables_. It also itemizes each variable by name, and displays the class of each variable. Gender, for example, is a factor with two levels, one for Male and another for Female. Levels are the different possible varieties of a factor. We could mae out of Height one factor with levels "tall" and "short". Names, for its turn has 10 levels because it only present unique entries (e.g., the different names for each one of our hypothesized participants)
+
+```{r}
+str(data)
+```
+
+### Summaries of your data
+
+```{r}
+summary(data)
+
+# Best for continous variables
+psych::describe(data[,c("Age", "Height", "Weight", "Courses")])
+
+# Best for categorical variables
+Hmisc::describe(data[,c("Names", "Gender", "Courses")])
+```
+
+### Contingency tables
+
+```{r}
+xtabs(~ Gender, data = data)
+xtabs(~ Names, data = data)
+xtabs(~ Courses, data = data)
+```
+
+### Two-way contingency tables for categorical data
+
+```{r}
+xtabs(~ Courses + Gender, data = data)
+```
+
+This recipe creates a useful table showing the number of instances that belong to each class as well as the percentage that this represents from the entire dataset.
+
+```{r, tidy=FALSE}
+cbind(Frequencies = table(data$Gender),
+      Percentage = prop.table(table(data$Gender))*100
+      )
+```
