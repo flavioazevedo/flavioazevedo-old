@@ -1,0 +1,207 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn about generating "random" numbers in R. 
+
+Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+## Generating "Random" Numbers
+
+The random word is between quotes above because R - or any software - cannot really generate truly random numbers. It gets really close though. This is because softwares use an algorithm for generating a sequence of numbers whose properties approximate the properties of sequences of random numbers. This is termed a pseudorandom number generator, which is not _truly_ random, because it is completely determined by a relatively small set of initial values, called the seed. 
+
+### Advanced Concept: Random & Distributions
+
+In computational statistics, and in R, random numbers are described by a distributions, which is a function specifying the probability that a random number is within some range. If the random number is continuous this is called "probability density function", if the random number is discrete then the term is "probability mass function". In any case, at the bottom of this tutorial, you will find an app that shows you the probability density functions for the Normal, Poisson and X distribution.
+
+### Sampling from a vector
+
+```{r, eval=FALSE}
+# Toss a coin
+sample(0:1,1)
+
+# Toss 10 coins
+sample(0:1,10,replace=T)
+
+# Roll a die
+sample(1:6,1)
+
+# Roll 10 dice
+sample(1:6,10, replace=T)
+
+# Roll a Icosahedron (20 sides die)
+sample(1:20, 10, replace=T)
+
+# Lottery 
+sample(1:49, 6, replace=F)
+
+# Pick a card, any card...
+sample(1:54, 6, replace=F)
+
+# That is a bit clunky, let's try something more advanced
+sample(paste(
+  rep(c(1:10, "Jacks", "Queen", "King"), 4), 
+  rep(c("of Hearts", "of Diamonds", "of Spades", "of Clubs"), 13),
+  sep = " "),
+  1)
+```
+
+### Sampling from a Distribution
+
+How to choose a random number in R? As a language for statistical analysis, R has a comprehensive library of functions for generating random numbers from various statistical distributions.
+
+Distribution | R Function
+------------- | -------------
+Uniform  | runif
+Normal  | rnorm
+Student's t	  | rt
+F  | rf
+chi-squared | rchisq
+Exponential  | rexp
+Log normal  | rlnorm
+Beta  | rbeta
+Binomial  | rbinom
+Negative Binomial | rnbinom
+Poisson | rpois
+Gamma  | rgamma
+Weibull	| rweibull
+Cauchy | rcauchy
+Multinomial | rmultinom
+Geometric | rgeom
+?Distributions | full list
+
+
+**The Uniform Distribution**
+
+If you want to generate a decimal number where any value (including fractional values) between the stated minimum and maximum is equally likely, the runif() function is what you are looking for.This function generates values from the Uniform distribution. Here's how to generate one random number between 0 and 1:
+
+```{r, eval=FALSE}
+runif(1, min=0, max=1)
+```
+
+Of course, when you run this, you'll get a different number, but it will definitely be between 0 and 1. You won't get the values 0 or 1 exactly, either.
+
+If you want to generate multiple random values, you can generate several values at once by specifying the number of values you want as the first argument to runif.  Here's how to generate 10 values between 0 and 1.
+
+```{r, eval=FALSE}
+runif(10, 0, 1)
+```
+
+**The Normal Distribution**
+
+To generate numbers from a normal distribution, use rnorm().
+
+```{r, eval=FALSE }
+# By default the mean is 0 and the standard deviation is 1
+rnorm(1)
+rnorm(5)
+mean(rnorm(100))
+
+# Define mean and standard deviation
+rnorm(1, mean=5, sd=1)
+rnorm(5, mean=5, sd=3)
+rnorm(100, mean=10, sd=10)
+
+# Check that the distribution looks right, make a histogram of the numbers
+hist(rnorm(100, mean=10, sd=10))
+```
+
+**The Poisson Distribution**
+
+To generate numbers from a poisson distribution, use rpois(). The Poisson distribution is popular for modeling the number of times an event occurs in an interval of time or space. The Poisson distribution may be useful to model events such as: 
+
+* The number of meteors greater than 1 meter diameter that strike earth in a year
+* The number of occurrences of the DNA sequence "ACGT" in a gene
+* The number of patients arriving in an emergency room between 11 and 12 pm
+
+In probability theory, a Poisson process is a stochastic process that counts the number of independent events in a given time interval. The Poisson distribution can also be used for the number of events in other specified intervals such as distance, area or volume.
+
+```{r, eval=FALSE }
+# 
+rpois(10, 1)
+rpois(10, 4)
+
+# In the poisson ditribution mean and variance are the same: lambda
+rpois(10, lambda=1)
+rpois(10, lambda=5)
+
+# Check that the distribution looks right, make a histogram of the numbers
+hist(rpois(1000, lambda=1), breaks = 5)
+```
+
+## 8.5 Wrap-up Exercise 
+
+Let's say I have a categorical variable which can take the values A, B, C and D. How can I generate 10000 random data points and control for the frequency of each? For example: A = 10% B = 20% C = 65% D = 5%. Any ideas how to do this? Don't fret if you have no ideas. I didn't when I first tried to solve it. But it helped me a great deal to practice the skills I learned and how they can be useful.
+
+### Solution 1: Elegant and quickest 
+
+```{r, eval=FALSE }
+sample(LETTERS[1:4], 10000, replace=TRUE, prob=c(0.1, 0.2, 0.65, 0.05))
+
+# But how do I know it is right? Save it to a 'vector' named x
+x <- sample(LETTERS[1:4], 10000, replace=TRUE, prob=c(0.1, 0.2, 0.65, 0.05))
+
+# And then table its results
+table(x)
+
+# If you want the check the exact proportions 
+prop.table(table(x))
+```
+
+### Solution 2: Clever, but dirty 
+
+```{r, eval=FALSE, tidy=FALSE }
+x <- sample(c(rep("A", 0.1*10000), 
+              rep("B", 0.2*10000),
+              rep("C", 0.65*10000), 
+              rep("D", 0.05*10000)),
+            1000)
+x
+
+# Equally good, but perhaps less straightforward
+x <- rep(c("A","B","C","D"), 10000*c(0.1,0.2,0.65,0.05))
+x
+# But how do I know it is right? table its results and check the exact proportions
+prop.table(table(x))
+```
+
+### Solution 3: Brute force (reversed thinking?)
+
+```{r, eval=FALSE, tidy=FALSE }
+x <- runif(10000) # Why use runif()? Hint: what it is the function's default?
+
+# Now we rename x values
+x[x <= 0.1]              <- "A"
+x[x >  0.1  & x <= 0.3]  <- "B"
+x[x >  0.3  & x <= 0.95] <- "C"
+x[x >  0.95 & x <= 1]    <- "D"
+
+# Check
+prop.table(table(x))
+```
+
+Although sequences that are closer to truly random can be generated using hardware random number generators, pseudorandom number generators are important in practice for their speed in number generation and their reproducibility.[2]
