@@ -1,0 +1,165 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn how to calculate Mathematical expressions, as well as store its results in a R object. In this lesson, all R code is below the R Souce button, while the output is hiden. To see it you will need to click on the green "R Output" button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easilly adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+# 8. Common Mathematical Expressions
+
+Let's start by using R as a simple calculator in the console directly. So, type in the top-right panel the following expression:
+
+```{r}
+3 + 4
+```
+
+Now, how about other, still very simple, operations?
+
+```{r}
+3 * 4
+```
+
+Division
+
+```{r}
+3 / 4
+```
+
+Exponentiation
+
+```{r}
+3 ^ 4
+```
+
+Square Root
+
+```{r}
+sqrt(169)
+```
+
+Natural logarithm
+
+```{r}
+log(10)
+```
+
+Common logarithm
+
+```{r}
+log10(10)
+```
+
+Use round brackets to group operations so that they are carried out first
+
+```{r}
+(100+2)/3  
+```
+
+What would happen if the round brackets were ommited?
+
+```{r}
+100+2/3  
+```
+
+The argument of a fuction can contain arithmetic operations or mathematical expressions
+
+```{r}
+sqrt(25-9)
+```
+
+Note that in R, you should only use parenthesis (or round brackets) but not square brackets for expressions in R.
+
+```{r}
+sqrt(((((7*8 + 1)/3) * 1/2)^2)*4)
+```
+
+Another way to ask for R to evaluate (calculate) an expression or piece of code is to select it, and click on the _Run_ button on the right side of the first pane. Or, while selected, press _Ctrl + Enter_ on your keyboard. Let's see if we can reproduce the following expression in the "Source" pane (top-left), if you do it correcly, you should find 0.2193828. $$[ (2^3 - 1) - log(10) ] / (3 + \sqrt{7^3 - 4})$$
+
+```{r, include=FALSE}
+((2^3 - 1) - log(10)) / (3 + sqrt(7^3 - 4)) 
+```
+
+Laslty, there are some named objects that R provides you, like the constant $\pi$ or Month names and letters.
+
+```{r}
+pi
+```
+
+```{r}
+month.abb # try: month.name
+```
+
+```{r}
+LETTERS   # try: letters
+```
+
+# 9. Objects in R
+
+R is what is known as an _"object-oriented"_ language. For example, you can give a name to a mathematical expression, which has the benefit (and effect) of storing it for later use. Indeed, R does not usually display the results of analyses you perform right away like in SPSS, SAS or Stata. Instead, performed analyses are usually stored in an object for later use. For this reason, when doing statistics in R, you will often find yourself naming and storing objects. The name you choose should consist of letters, numbers, and the ".", and it should not start with a number.
+
+In order to create an object in R, you need to assign it to a name. Names can be assigned by using the arrow-like signs <- and -> as demonstrated in the exercise below. Which sign you use depends on whether you prefer putting the name first or last (it may be helpful to think of -> as "put into" and <- as "set to"). It is also very common to use the equal sign '='.
+
+
+#### Advanced: If you who would like to learn more about the differences between the assign signs, [here's a good link on the matter](http://stackoverflow.com/questions/1741820/assignment-operators-in-r-and).
+
+```{r}
+# You can store the results of mathematical expressions
+x <- sqrt(2 * max(-10, 0.2, 4.5)) + 100
+```
+
+In order to see the result, you run the name of the object
+
+```{r}
+x
+```
+
+Store the number 0.0001 under the name "small.num" (i.e. put 0.0001 into small.num)
+
+```{r}
+0.001 -> small.num                
+```
+
+Now retrieve its value by running the saved object
+
+```{r}
+small.num
+```
+
+You can put the name first if you reverse the arrow (set big.num to 10 * 100). This is easier.
+
+```{r}
+big.num <- 10 * 100               
+big.num
+```
+
+A third way this is done is by using the equal sign like this
+
+```{r}
+normal.num = sqrt(100*(12^2))/30
+```
+
+#### **Scalar Variables**. Every object in R has a type - all the variables we created are termed scalar. Scalar variable is a single number variable. x is a scalar variable whose value is 103, small.num is a scalar variable whose value is 0.001 and so forth.
