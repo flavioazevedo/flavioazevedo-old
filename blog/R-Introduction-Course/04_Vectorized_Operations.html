@@ -1104,7 +1104,7 @@ Female
 </tbody>
 </table>
 </div>
-<p>In analyzing a data-set, we are often interested in conducting operations for a whole set of numbers of a given variable (which we can call <strong>vectors</strong>). A vector can contain numbers, strings, logical values, or any other type. For example, if we take our participants <em>Height</em>, it would be an example of a numeric vector. If we take our participants' <em>Gender</em>, it would be an example of a string vector. In this way, one can build a data-set with several vectors.</p>
+<p>In analyzing a data-set, we are often interested in conducting operations for a whole set of numbers of a given variable (which we can call <strong>vectors</strong>). A vector can contain numbers, strings, logical values, or any other type. For example, if we take our participants <em>Height</em>, it would be an example of a numeric vector. If we take our participants' <em>Gender</em>, it would be an example of a string vector. In this way, one can build a data-set with several types of vectors.</p>
 <p>Let's focus on male students' heights as our example. Suppose we are interested in their Arithmetic mean, how can we calculate it in R? Here's the formula: <br /><span class="math display">$$\frac{1}{n} \sum_{i=i}^{n} x_{i}$$</span><br /></p>
 <p>The first thing we need to do - according to the formula - is to add all the heights. So lets...</p>
 <div class="row">
@@ -1112,6 +1112,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">157.9 + 172.8 + 180.8 + 146.5 + 174.3</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 832.3
+</code></pre>
 </div>
 <p>... then we need to divide this sum by the number of observations, which is 5. So, what is the mean height of male students in our sample?</p>
 <div class="row">
@@ -1119,6 +1124,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">(157.9 + 172.8 + 180.8 + 146.5 + 174.3)/5</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 166.46
+</code></pre>
 </div>
 <p>Now, let's do the same operation using a vector. In the previous section we learned how to store a mathematical expression into an object. Now, we are going to store more than one piece of data into an object (i.e., vector). So first, we need to name our vector, let's call it &quot;height&quot;. And it will receive all five values. In R, we do this by &quot;combining&quot; or &quot;concatenating&quot; several values, so we use the &quot;c&quot; in front of a parenthesis, with values separated by commas.</p>
 <div class="row">
@@ -1133,6 +1143,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">height</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 157.9 172.8 180.8 146.5 174.3
+</code></pre>
 </div>
 <p>Now that we created our vector, we can do the same operations we did above for our <em>height</em> vector. This is one of the main advantages or R over other statistical software.</p>
 <p>So, type in your Source panel (top-left) the following expressions:</p>
@@ -1142,6 +1157,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">height * 2</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 315.8 345.6 361.6 293.0 348.6
+</code></pre>
 </div>
 <p>Division</p>
 <div class="row">
@@ -1149,6 +1169,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">height/2</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 78.95 86.40 90.40 73.25 87.15
+</code></pre>
 </div>
 <p>Exponentiation</p>
 <div class="row">
@@ -1156,6 +1181,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">height^2</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 24932.41 29859.84 32688.64 21462.25 30380.49
+</code></pre>
 </div>
 <p>Vectorized operations are one of the most important strengths of R because it facilitates immensely the process of dealing with data. For example, if we wanted to calculate the mean of height for males, all we have to do is to know the function in R that calculates the: mean(), and put our vector inside it.</p>
 <div class="row">
@@ -1163,6 +1193,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">mean(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 166.46
+</code></pre>
 </div>
 <p>Variance</p>
 <div class="row">
@@ -1170,6 +1205,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">var(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 194.743
+</code></pre>
 </div>
 <p>Standard Deviation</p>
 <div class="row">
@@ -1177,6 +1217,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">sd(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 13.95503
+</code></pre>
 </div>
 <p>Median</p>
 <div class="row">
@@ -1184,6 +1229,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">median(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 172.8
+</code></pre>
 </div>
 <p>Range</p>
 <div class="row">
@@ -1191,6 +1241,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">range(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 146.5 180.8
+</code></pre>
 </div>
 <p>Summary</p>
 <div class="row">
@@ -1198,6 +1253,12 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">summary(height)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  146.5   157.9   172.8   166.5   174.3   180.8 
+</code></pre>
 </div>
 <p>We can also do regular operations with vectors without naming them</p>
 <div class="row">
@@ -1205,6 +1266,11 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">c(1, 2, 3, 4, 5) * 2</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1]  2  4  6  8 10
+</code></pre>
 </div>
 <p>Can you guess which mathematical operation the below code is yielding?</p>
 <div class="row">
@@ -1212,13 +1278,23 @@ Female
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">c(1, 2, 3, 4, 5) * c(1, 2, 3, 4, 5)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1]  1  4  9 16 25
+</code></pre>
 </div>
-<p>Can you guess which mathematical operation the below code is yielding?</p>
+<p>How about this last one?</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">height - c(1, 2, 3, 4, 5) * c(1, 2, 3, 4, 5)</code></pre>
+<pre style=""><code class="source r">height - c(1, 2, 3, 4, 5) * c(5, 4, 3, 2, 1)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 152.9 164.8 171.8 138.5 169.3
+</code></pre>
 </div>
 </div>
 </div>
@@ -1235,6 +1311,34 @@ Female
 <p class="navbar-text">
 Toggle
 </p>
+</li>
+<li class="dropup">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class="dropdown-header">
+Languages
+</li>
+<li class="active">
+<a href="#" class="toggle-global source R" type="source.R">R</a>
+</li>
+<li>
+<a href="#" type="all-source" class="toggle-global">All</a>
+</li>
+</ul>
+</li>
+<li class="dropup">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Output <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class="dropdown-header">
+Type
+</li>
+<li class="active">
+<a href="#" class="toggle-global output" type="output">output</a>
+</li>
+<li>
+<a href="#" type="all-output" class="toggle-global">All</a>
+</li>
+</ul>
 </li>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>
