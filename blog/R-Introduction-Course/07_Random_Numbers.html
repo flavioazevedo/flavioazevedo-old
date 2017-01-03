@@ -873,37 +873,101 @@
 <p>Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green &quot;R Output&quot; button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find &quot;Code highlighting&quot; which changes how R code is displayed to you, and Toggle R code and Figures.</p>
 <h2 id="generating-random-numbers">Generating &quot;Random&quot; Numbers</h2>
 <p>The random word is between quotes above because R - or any software - cannot really generate truly random numbers. It gets really close though. This is because softwares use an algorithm for generating a sequence of numbers whose properties approximate the properties of sequences of random numbers. This is termed a pseudorandom number generator, which is not <em>truly</em> random, because it is completely determined by a relatively small set of initial values, called the seed.</p>
-<h3 id="advanced-concept-random-distributions">Advanced Concept: Random &amp; Distributions</h3>
-<p>In computational statistics, and in R, random numbers are described by a distributions, which is a function specifying the probability that a random number is within some range. If the random number is continuous this is called &quot;probability density function&quot;, if the random number is discrete then the term is &quot;probability mass function&quot;. In any case, at the bottom of this tutorial, you will find an app that shows you the probability density functions for the Normal, Poisson and X distribution.</p>
 <h3 id="sampling-from-a-vector">Sampling from a vector</h3>
+<p>Below we will sample from several vectors, and emulate tossing a coin, rolling a die, playing the lottery, etc.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r"># Toss a coin
-sample(0:1, 1)
-
-# Toss 10 coins
-sample(0:1, 10, replace = T)
-
-# Roll a die
-sample(1:6, 1)
-
-# Roll 10 dice
-sample(1:6, 10, replace = T)
-
-# Roll a Icosahedron (20 sides die)
-sample(1:20, 10, replace = T)
-
-# Lottery
-sample(1:49, 6, replace = F)
-
-# Pick a card, any card...
-sample(1:54, 6, replace = F)
-
-# That is a bit clunky, let's try something more advanced
+sample(0:1, 1)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 0
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Toss 10 coins
+sample(0:1, 10, replace = T)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r"> [1] 0 1 1 0 0 1 0 0 1 0
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Roll a die
+sample(1:6, 1)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 1
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Roll 10 dice
+sample(1:6, 10, replace = T)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r"> [1] 1 2 1 1 4 3 6 1 5 4
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Roll a Icosahedron (20 sides die)
+sample(1:20, 10, replace = T)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r"> [1]  3  3  1  4  7 20  4 15 18  7
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Lottery
+sample(1:49, 6, replace = F)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 49 28 46 44 35 32
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># Pick a card, any card...
+sample(1:54, 6, replace = F)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] 43 22 45  9  6 39
+</code></pre>
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r"># That is a bit clunky, let's try something more advanced
 sample(paste(rep(c(1:10, "Jacks", "Queen", "King"), 4), rep(c("of Hearts", "of Diamonds", 
     "of Spades", "of Clubs"), 13), sep = " "), 1)</code></pre>
+<button class="output R toggle btn btn-xs btn-success">
+<span class="glyphicon glyphicon-chevron-up"></span> R output
+</button>
+<pre style="display:none"><code class="output r">[1] "7 of Spades"
+</code></pre>
+</div>
+<h3 id="advanced-concept-random-distributions">Advanced Concept: Random &amp; Distributions</h3>
+<p>In computational statistics, and in R, random numbers are described by a distributions, which is a function specifying the probability that a random number is within some range. If the random number is continuous this is called &quot;probability density function&quot;, if the random number is discrete then the term is &quot;probability mass function&quot;.</p>
+<p>If you want to learn more about Probability density functions, you can run the code below in your RStudio, which will produce a Shiny App displaying the probability density functions for the Normal, Poisson and Beta distributions. <a href="https://gist.github.com/kota7/00641dba8784bb81bd10">Here's the link if you want the raw App</a></p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">install.packages("shiny", dependencies = TRUE)
+library(shiny)
+runGist("00641dba8784bb81bd10")</code></pre>
 </div>
 <h3 id="sampling-from-a-distribution">Sampling from a Distribution</h3>
 <p>How to choose a random number in R? As a language for statistical analysis, R has a comprehensive library of functions for generating random numbers from various statistical distributions.</p>
@@ -1111,20 +1175,6 @@ Although sequences that are closer to truly random can be generated using hardwa
 <p class="navbar-text">
 Toggle
 </p>
-</li>
-<li class="dropup">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li class="dropdown-header">
-Languages
-</li>
-<li class="active">
-<a href="#" class="toggle-global source R" type="source.R">R</a>
-</li>
-<li>
-<a href="#" type="all-source" class="toggle-global">All</a>
-</li>
-</ul>
 </li>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>

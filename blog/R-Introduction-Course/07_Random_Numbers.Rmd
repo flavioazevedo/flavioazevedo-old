@@ -34,13 +34,11 @@ Remember: In this lesson, all R code is below the R Source button, while the out
 
 The random word is between quotes above because R - or any software - cannot really generate truly random numbers. It gets really close though. This is because softwares use an algorithm for generating a sequence of numbers whose properties approximate the properties of sequences of random numbers. This is termed a pseudorandom number generator, which is not _truly_ random, because it is completely determined by a relatively small set of initial values, called the seed. 
 
-### Advanced Concept: Random & Distributions
-
-In computational statistics, and in R, random numbers are described by a distributions, which is a function specifying the probability that a random number is within some range. If the random number is continuous this is called "probability density function", if the random number is discrete then the term is "probability mass function". In any case, at the bottom of this tutorial, you will find an app that shows you the probability density functions for the Normal, Poisson and X distribution.
-
 ### Sampling from a vector
 
-```{r, eval=FALSE}
+Below we will sample from several vectors, and emulate tossing a coin, rolling a die, playing the lottery, etc.
+
+```{r}
 # Toss a coin
 sample(0:1,1)
 
@@ -70,6 +68,18 @@ sample(paste(
   1)
 ```
 
+### Advanced Concept: Random & Distributions
+
+In computational statistics, and in R, random numbers are described by a distributions, which is a function specifying the probability that a random number is within some range. If the random number is continuous this is called "probability density function", if the random number is discrete then the term is "probability mass function". 
+
+If you want to learn more about Probability density functions, you can run the code below in your RStudio, which will produce a Shiny App displaying the probability density functions for the Normal, Poisson and Beta distributions. [Here's the link if you want the raw App](https://gist.github.com/kota7/00641dba8784bb81bd10)
+
+```{r, eval=FALSE}
+install.packages("shiny", dependencies = TRUE)
+library(shiny)
+runGist('00641dba8784bb81bd10')
+```
+
 ### Sampling from a Distribution
 
 How to choose a random number in R? As a language for statistical analysis, R has a comprehensive library of functions for generating random numbers from various statistical distributions.
@@ -93,7 +103,6 @@ Cauchy | rcauchy
 Multinomial | rmultinom
 Geometric | rgeom
 ?Distributions | full list
-
 
 **The Uniform Distribution**
 
