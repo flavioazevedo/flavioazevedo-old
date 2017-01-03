@@ -180,7 +180,7 @@ Simple Interest: define a variable called simple equal to $S * (1 + i1 * n)$
 
 Compound Interest: define a variable called compound equal to $S * (1 + i2) ^ n$
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 S  <- 100
 i1 <- 0.1
 i2 <- 0.09
@@ -193,7 +193,7 @@ compound <- S*(1 + i2)^n
 
 It's natural to ask which type of interest for this values gives more amount of money after 2 years (n = 2). Using logical functions <,>, == check which variable is bigger between simple and compound
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 simple>compound
 ```
 
@@ -203,7 +203,7 @@ Using logical functions <,>, ==, |, & find out if simple or compound is equal to
 
 Using logical functions <,>, ==, |, & find out if simple and compound is equal to 120
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 simple>=120|compound>=120
 simple>=120 & compound>=120
 ```
@@ -214,7 +214,7 @@ Formulas can deal with vectors, so let's define a vector and use it in one of th
 
 Apply to S the simple interest formula and store the value of the vector in simple
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 S <- c(100,95)
 simple <- S*(1 + i1*n)
 ```
@@ -223,7 +223,7 @@ simple <- S*(1 + i1*n)
 
 Using logical functions <,>, == check if any of the simple values is smaller or equal to compound
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 simple<=compound
 ```
 
@@ -231,7 +231,7 @@ simple<=compound
 
 Using the function %/% find out how many $20 candies can you buy with the money stored in compound
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 compound%/%20
 ```
 
@@ -239,7 +239,7 @@ compound%/%20
 
 Using the function %% find out how much money is left after buying the candies.
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 compound%%20
 ```
 
@@ -248,7 +248,7 @@ compound%%20
 Let's create two new variables, ode defined as rational=1/3 and decimal=0.33. Using the logical function !=
 Verify if this two values are different.
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 rational <- 1/3
 decimal <- 0.33
 rational!=decimal
@@ -264,7 +264,7 @@ Use the logical function isTRUE verify if rational and decimal are the same.
 
 Use the logical function identical verify if rational and decimal are the same.
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 rational==decimal
 isTRUE(rational==decimal)
 identical(rational,decimal)
@@ -275,7 +275,7 @@ identical(rational,decimal)
 
 Using the help of the logical functions of the previous exercise find the approximation that R uses for 1/3. Hint: It is not the value that R prints when you define 1/3
 
-```{r, bootstrap.show.code=FALSE}
+```{r, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
 1/3==0.3333333333333333
 ```
 
@@ -302,3 +302,44 @@ Using the help of the logical functions of the previous exercise find the approx
 18. Get the last 2 rows in last 2 columns from iris dataset
 19. Get rows with Sepal.Width > 3.5 from iris
 20. Get the rows with 'versicolor' species using subset() from iris
+
+
+
+```{r, eval=FALSE, bootstrap.show.code=FALSE, bootstrap.panel=TRUE}
+sqrt(729)
+b <- 5124
+one_to_21 <- 1:21
+class(one_to_21)
+my.vector <- c(2131, 24, 'j', 2, 'b')
+class(my.vector)
+charHundred <- character(26)
+charHundred
+charHundred[1] <- "a"
+myFriends <- c("alan", "bala", "amir", "tsong", "chan")
+length(myFriends)
+myFriends[1:2]
+myFriends[c(2,3)]
+sort(myFriends) 
+myFriends[order(myFriends)]
+sort(myFriends, decreasing=TRUE)
+myFriends[rev(order(myFriends))]
+out <- c(rep('a', 3), seq(1, 5), seq(11, 21, by=2))
+mySample <-sample(1:100, 50)
+mySample <-sample(1:500, 50, replace=T)
+class(iris)  # get class
+sapply(iris, class)  # get class of all columns
+str(iris)  # structure
+summary(iris)  # summary of airquality
+head(iris)  # view the first 6 obs
+fix(iris)  # view spreadsheet like grid
+rownames(iris)  # row names
+colnames(iris)  # columns names
+nrow(iris)  # number of rows
+ncol(iris)  # number of columns
+numRows <- nrow(iris)
+numCols <- ncol(iris)
+iris[(numRows-1):numRows, (numCols-1):numCols]
+iris[iris$Sepal.Width > 3, ]
+iris[which(iris$Sepal.Width > 3), ]
+subset(iris, Species == "versicolor")
+```

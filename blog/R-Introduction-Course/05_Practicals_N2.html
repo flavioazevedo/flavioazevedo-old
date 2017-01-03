@@ -1372,9 +1372,12 @@ height == height.female</code></pre>
 <p>Simple Interest: define a variable called simple equal to <span class="math inline"><em>S</em> * (1 + <em>i</em>1 * <em>n</em>)</span></p>
 <p>Compound Interest: define a variable called compound equal to <span class="math inline"><em>S</em> * (1 + <em>i</em>2)<sup><em>n</em></sup></span></p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">S <- 100
 i1 <- 0.1
 i2 <- 0.09
@@ -1382,105 +1385,166 @@ n <- 2
 simple <- S * (1 + i1 * n)
 compound <- S * (1 + i2)^n</code></pre>
 </div>
+</div>
 <h4 id="exercise-2">Exercise 2</h4>
 <p>It's natural to ask which type of interest for this values gives more amount of money after 2 years (n = 2). Using logical functions &lt;,&gt;, == check which variable is bigger between simple and compound</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">simple > compound</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] TRUE
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-3">Exercise 3</h4>
 <p>Using logical functions &lt;,&gt;, ==, |, &amp; find out if simple or compound is equal to 120</p>
 <p>Using logical functions &lt;,&gt;, ==, |, &amp; find out if simple and compound is equal to 120</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">simple >= 120 | compound >= 120</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] TRUE
 </code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
+</div>
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">simple >= 120 & compound >= 120</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-4">Exercise 4</h4>
 <p>Formulas can deal with vectors, so let's define a vector and use it in one of the formulas we defined earlier. Let's define S as a vector with the following values 100, 96. Remember that c() is the function that allow us to define vectors.</p>
 <p>Apply to S the simple interest formula and store the value of the vector in simple</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">S <- c(100, 95)
 simple <- S * (1 + i1 * n)</code></pre>
+</div>
 </div>
 <h4 id="exercise-5">Exercise 5</h4>
 <p>Using logical functions &lt;,&gt;, == check if any of the simple values is smaller or equal to compound</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">simple <= compound</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE  TRUE
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-6">Exercise 6</h4>
 <p>Using the function %/% find out how many $20 candies can you buy with the money stored in compound</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">compound%/%20</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] 5
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-7">Exercise 7</h4>
 <p>Using the function %% find out how much money is left after buying the candies.</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">compound%%20</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] 18.81
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-8">Exercise 8</h4>
 <p>Let's create two new variables, ode defined as rational=1/3 and decimal=0.33. Using the logical function != Verify if this two values are different.</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">rational <- 1/3
 decimal <- 0.33
 rational != decimal</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] TRUE
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-9">Exercise 9</h4>
 <p>There are other functions that can help us compare two variables.</p>
@@ -1488,46 +1552,78 @@ rational != decimal</code></pre>
 <p>Use the logical function isTRUE verify if rational and decimal are the same.</p>
 <p>Use the logical function identical verify if rational and decimal are the same.</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">rational == decimal</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE
 </code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
+</div>
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">isTRUE(rational == decimal)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE
 </code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
+</div>
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">identical(rational, decimal)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE
 </code></pre>
+</div>
 </div>
 <h4 id="exercise-10">Exercise 10</h4>
 <p>Using the help of the logical functions of the previous exercise find the approximation that R uses for 1/3. Hint: It is not the value that R prints when you define 1/3</p>
 <div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R source
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="source r">1/3 == 0.333333333333333</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
+</div>
+<div class="panel panel-success">
+<div class="output R panel-heading toggle">
+<h5 class="panel-title">
 <span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
+</h5>
+</div>
 <pre style="display:none"><code class="output r">[1] FALSE
 </code></pre>
+</div>
 </div>
 <h2 id="advanced-exercises-2">Advanced Exercises 2</h2>
 <ol style="list-style-type: decimal">
@@ -1550,7 +1646,53 @@ rational != decimal</code></pre>
 <li>Apply the above functions and inspect results on 'iris' (a base R dataframe)</li>
 <li>Get the last 2 rows in last 2 columns from iris dataset</li>
 <li>Get rows with Sepal.Width &gt; 3.5 from iris</li>
-<li>Get the rows with 'versicolor' species using subset() from iris
+<li>Get the rows with 'versicolor' species using subset() from iris</li>
+</ol>
+<div class="row">
+<div class="panel panel-primary">
+<div class="source R panel-heading toggle">
+<h5 class="panel-title">
+<span class="glyphicon glyphicon-chevron-up"></span> R source
+</h5>
+</div>
+<pre style="display:none"><code class="source r">sqrt(729)
+b <- 5124
+one_to_21 <- 1:21
+class(one_to_21)
+my.vector <- c(2131, 24, "j", 2, "b")
+class(my.vector)
+charHundred <- character(26)
+charHundred
+charHundred[1] <- "a"
+myFriends <- c("alan", "bala", "amir", "tsong", "chan")
+length(myFriends)
+myFriends[1:2]
+myFriends[c(2, 3)]
+sort(myFriends)
+myFriends[order(myFriends)]
+sort(myFriends, decreasing = TRUE)
+myFriends[rev(order(myFriends))]
+out <- c(rep("a", 3), seq(1, 5), seq(11, 21, by = 2))
+mySample <- sample(1:100, 50)
+mySample <- sample(1:500, 50, replace = T)
+class(iris)  # get class
+sapply(iris, class)  # get class of all columns
+str(iris)  # structure
+summary(iris)  # summary of airquality
+head(iris)  # view the first 6 obs
+fix(iris)  # view spreadsheet like grid
+rownames(iris)  # row names
+colnames(iris)  # columns names
+nrow(iris)  # number of rows
+ncol(iris)  # number of columns
+numRows <- nrow(iris)
+numCols <- ncol(iris)
+iris[(numRows - 1):numRows, (numCols - 1):numCols]
+iris[iris$Sepal.Width > 3, ]
+iris[which(iris$Sepal.Width > 3), ]
+subset(iris, Species == "versicolor")</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="navbar navbar-fixed-bottom navbar-inverse">
@@ -1566,8 +1708,21 @@ rational != decimal</code></pre>
 <p class="navbar-text">
 Toggle
 </p>
-</li></li>
-</ol>
+</li>
+<li class="dropup">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class="dropdown-header">
+Languages
+</li>
+<li class="active">
+<a href="#" class="toggle-global source R" type="source.R">R</a>
+</li>
+<li>
+<a href="#" type="all-source" class="toggle-global">All</a>
+</li>
+</ul>
+</li>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>
 </li>
