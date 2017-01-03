@@ -1,0 +1,304 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we will learn about vectorized operations. **Remember**: In this lesson, all R code is below the "R Source" button, while the output is hidden by default. To see it you will need to click on the "R Output" button. Importantly, at the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find "Code highlighting" which changes how R code is displayed to you, and Toggle R code and Figures.
+
+## Practical N.2
+
+### Vector and R functions 
+
+Create a vector called _height.female_ which is composed by the height of all women in our sample, and another vector called _n.R.courses_ for the number of R courses/workshops for each participant. Then for these two vectors, calculate the mean, median, variance, standard deviation, and range. Now, choose at least 5 (five) other functions from the list below and apply to both created vectors. See if you understand what the function returns.
+
+R function  | Description
+------------- | -------------
+max(x) | Largest Value
+min(x)  | Smallest Value
+mean(x)  | Arithmetic Mean
+sum(x)  | Sum
+median(x) | Median
+var(x) | Variance
+sd(x)  | Standard Deviation
+abs(x)	  | Absolute value
+range(x)	  | 	Range
+length(x)  | Length
+diff(x, lag=1)  | lagged differences
+scale(x)	 | column center or standardize a matrix.
+sqrt(x)	  | square root
+ceiling(x)  | 	ceiling(3.475) is 4
+floor(x)  | 	floor(3.475) is 3
+round(x, digits=n)	  | round(3.475, digits=2) is 3.48
+log(x)  | natural logarithm
+log10(x)	  | common logarithm
+exp(x)  | 	e^x
+summary(x)  |  Min, 1st Quan,  Median,  Mean, 3rd Quan, and Max
+quantile(x) | sample quantiles
+
+
+```{r, include=FALSE}
+height <- c(157.9, 172.8, 180.8, 146.5, 174.3)
+set.seed(1234)
+data <- data.frame(
+  Names   = c("Alan", "Brian", "Carlos", "Dalton", "Ethan", "Flora", "Gaia", "Helen", "Ingrid", "Jennifer"),
+  Age     = rpois(10, 30),
+  Height  = rnorm(10, 170, 10),
+  Weight  = rnorm(10, 70, 15),
+  Gender  = gl(2, 5, labels = c("Male", "Female")),
+  Courses = rpois(10, 2)
+)
+height.female <- data$Height[6:10]
+n.R.courses <- data$Courses
+```
+
+\pagebreak
+
+## Boolean expressions in R 
+
+Boolean expressions evaluate to either TRUE or FALSE. A crucial part of computing involves conditional statements. Is this value bigger than other? Are two vectors the same size? etc. Questions can be joined together using words like 'and' 'or', 'not'. In R, < means 'less than', > means 'greater than', and ! means 'not' (see Table below).
+
+R function Symbol | Description
+------------- | -------------
+!  | logical NOT
+&  | logical AND
+|  | logical OR
+<  | less than
+<= | less than or equal to
+>  | greater than
+=  | greater than or equal to
+==  | logical equals (double =)
+!=  | not equal
+&&  | AND with IF
+double upright bars  | OR with IF
+xor(x,y)  | exclusive OR
+isTRUE(x)  |  an abbreviation of identical(TRUE,x)
+
+For all these logical statements, try to figure out (before running the code) the result/answer. Then run the code by pressing ctrl + enter on the desired line.
+
+```{r}
+# Is true equal to false?
+TRUE == FALSE
+
+# T and F are shorthand for TRUE and FALSE. Try this:
+T == TRUE
+T == F
+T != F
+
+# Is 4 smaller than 4
+3 < 4
+
+# Is 2 + 2 equal to 5
+2 + 2 == 5
+
+# Is 2 smaller than 5
+2 < 5
+
+# Is 7 smaller or equal than minus 2
+7 <= -2
+
+# Try to figure these out
+3 > (3+1)
+4 >= 4
+(3/4) == (9/12)
+
+# The symbol '!' is a negation of a logical statement
+!TRUE
+!F
+2^4 != 4^2
+!(2 < 1)
+!(3 < 6)
+
+# The ampersand symbol & means "and". A statement is TRUE only if the expressions on both sides of the operator are TRUE. One can also think of "intersection" as in set operations 
+3*4==12 & 6/8<1
+(3 < 5) & (2 > 0)
+(2 < 3) & (5 > 5)
+
+# The symbol | means "or". The | operator is TRUE if at least one of the expressions surrounding it is TRUE. You can also think in terms of set operations as in "union" of sets.
+(3 < 5) | (2 > 3)
+(2 < 1) | (5 > 5)
+TRUE | FALSE
+FALSE | TRUE
+FALSE | 2+2==4
+
+# Can you guess?
+c(1, 2, 3, 4, 5) <= 3
+((5>4) & !(3<2)) | (6>7)
+
+# Most Boolean operators act element-wise.
+# %in%  is a  matching operator
+c(1, 2, 3, 4, 5) %in% c(1, 2, 3)
+height %in% c(157.9, 172.8, 180.8, 146.5, 174.3)
+height.female %in% c(161.6, 194.2, 171.3, 165.1, 165.6)
+
+# %%  is the symbol for modulus. In computing, the modulo operation finds the remainder after division of one number by another (sometimes called modulus)
+5 %% 2
+9 %% 3
+V <- c(3,2,8,6,5,6,11,0)
+I <- (V %in% 2 == 1)
+
+# Lets try to use what we learned thus far with our vectors
+height == height.female
+height > height.female
+height < height.female
+
+```
+
+\pagebreak
+
+## Advanced Exercises 1
+
+These exercises are slightly adapted (shamelessly copied with minor adjustments) from **[R-exercises](www.r-exercises.com)**, a website that offers many exercises for you to test your R skills. They also offer a [R Course Finder](http://r-exercises.com/r-courses/) which catalogues several R courses on MOOCs (Massive Open Online Courses) such as Coursera and Khan Academy and other online learning platforms (e.g. Udemy, EdX, Lynda.com).
+
+#### Exercise 1
+
+There are two main different type of interest, simple and compound. To start let's create 3 variables, initial investment (S = 100), annual simple interest (i1=.02), annual compound interest (i2=.015), and the years that the investment will last (n=2).
+
+Simple Interest: define a variable called simple equal to $S * (1 + i1 * n)$
+
+Compound Interest: define a variable called compound equal to $S * (1 + i2) ^ n$
+
+```{r, bootstrap.show.code=FALSE}
+S  <- 100
+i1 <- 0.1
+i2 <- 0.09
+n  <- 2
+simple <- S*(1 + i1*n)
+compound <- S*(1 + i2)^n
+```
+
+#### Exercise 2
+
+It's natural to ask which type of interest for this values gives more amount of money after 2 years (n = 2). Using logical functions <,>, == check which variable is bigger between simple and compound
+
+```{r, bootstrap.show.code=FALSE}
+simple>compound
+```
+
+#### Exercise 3
+
+Using logical functions <,>, ==, |, & find out if simple or compound is equal to 120
+
+Using logical functions <,>, ==, |, & find out if simple and compound is equal to 120
+
+```{r, bootstrap.show.code=FALSE}
+simple>=120|compound>=120
+simple>=120 & compound>=120
+```
+
+#### Exercise 4
+
+Formulas can deal with vectors, so let's define a vector and use it in one of the formulas we defined earlier. Let's define S as a vector with the following values 100, 96. Remember that c() is the function that allow us to define vectors.
+
+Apply to S the simple interest formula and store the value of the vector in simple
+
+```{r, bootstrap.show.code=FALSE}
+S <- c(100,95)
+simple <- S*(1 + i1*n)
+```
+
+#### Exercise 5
+
+Using logical functions <,>, == check if any of the simple values is smaller or equal to compound
+
+```{r, bootstrap.show.code=FALSE}
+simple<=compound
+```
+
+#### Exercise 6
+
+Using the function %/% find out how many $20 candies can you buy with the money stored in compound
+
+```{r, bootstrap.show.code=FALSE}
+compound%/%20
+```
+
+#### Exercise 7
+
+Using the function %% find out how much money is left after buying the candies.
+
+```{r, bootstrap.show.code=FALSE}
+compound%%20
+```
+
+#### Exercise 8
+
+Let's create two new variables, ode defined as rational=1/3 and decimal=0.33. Using the logical function !=
+Verify if this two values are different.
+
+```{r, bootstrap.show.code=FALSE}
+rational <- 1/3
+decimal <- 0.33
+rational!=decimal
+```
+
+#### Exercise 9
+
+There are other functions that can help us compare two variables.
+
+Use the logical function == verify if rational and decimal are the same.
+
+Use the logical function isTRUE verify if rational and decimal are the same.
+
+Use the logical function identical verify if rational and decimal are the same.
+
+```{r, bootstrap.show.code=FALSE}
+rational==decimal
+isTRUE(rational==decimal)
+identical(rational,decimal)
+```
+
+
+#### Exercise 10
+
+Using the help of the logical functions of the previous exercise find the approximation that R uses for 1/3. Hint: It is not the value that R prints when you define 1/3
+
+```{r, bootstrap.show.code=FALSE}
+1/3==0.3333333333333333
+```
+
+
+## Advanced Exercises 2
+
+1. Calculate square root of 729
+2. Create a new variable 'b' with value 5124
+3. Create a vector numbers from 1 to 21 and find out its class
+4. Create a vector containing following mixed elements {2131, 24, 'j', 2, 'b'} and find out its class
+5. Initialise a character vector of length 26
+6. Assign the character 'a' to the first element in above vector
+7. Create a vector with some of your class mates names (at least 5)
+8. Get the length of above vector
+9. Get the first two friends from above vector
+10. Get the 2nd and 3rd friends
+11. Sort your friends by names
+12. Reverse direction of the above sort
+13. Create with rep() and seq() R functions the following vector: 'a','a','a', 1,2,3,4,5,11,13,15,17,19,21
+14. Sample 50 random numbers between 1 to 100
+15. Sample 50 random numbers between 1 to 500, with replacement	
+16. Find the class of _'iris'_ dataframe, find the class of all the columns of _'iris'_, get the summary of _'iris'_, get the top 6 rows, view it in a spreadsheet format, get row names, get column names, get number of rows and get number of columns.
+17. Apply the above functions and inspect results on 'iris' (a base R dataframe)
+18. Get the last 2 rows in last 2 columns from iris dataset
+19. Get rows with Sepal.Width > 3.5 from iris
+20. Get the rows with 'versicolor' species using subset() from iris
