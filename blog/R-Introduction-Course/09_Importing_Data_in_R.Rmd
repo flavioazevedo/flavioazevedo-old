@@ -83,10 +83,11 @@ And you might consider changing the path that you get as a result of this functi
 setwd("C:/Users/myusername/folder/R Workshop/Datasets")
 ```
 
+### 15.1 Datasets
 
+For the purposes of this lessons, some datasets are available for your to download, **place in your working directory** and load in R. [Please follow this link](https://github.com/flavioazevedo/flavioazevedo.github.io/tree/master/blog/R-Introduction-Course/Datasets).
 
-
-### 15.1 Load in R *.txt and *.dat
+### 15.2 Load in R *.txt and *.dat
 
 For these file extensions you want to use the read.table() function
 
@@ -95,6 +96,7 @@ dat <- read.table("pbcseq.dat")
 ```
 
 You also want to check if the number of columns is the same for all rows.
+
 ```{r, eval=FALSE}
 cf <- count.fields("pbcseq.dat")
 cf
@@ -104,7 +106,7 @@ cf
 # Alternatevely, check if all are 19
 ```
 
-#### 15.1.2 Coding Missing data
+### 15.3 Coding Missing data
 
 Below we learn how to define "Missing data" while loading data in, For example, in our file pbcseq.dat missing data was codded as ".". In R, however, missing is coded as "NA"s, so we need to make sure to tell our read.table() function about that difference.
 
@@ -112,25 +114,25 @@ Below we learn how to define "Missing data" while loading data in, For example, 
 dat <- read.table("pbcseq.dat", na.strings = ".") 
 ```
 
-#### 15.1.3 Make sure to include the header
+#### 15.3.1 Make sure to include the header
 
 ```{r, eval=FALSE}
 dat <- read.table("pbcseq.dat", header = TRUE, na.strings = ".")
 ```
 
-### 15.2 Load in R *.csv
+### 15.4 Load in R *.csv
 
 ```{r, eval=FALSE}
-dat <- read.csv("C:/Users/Flavio/Documents/Courses/R/Data/aids.csv")
+dat <- read.csv("aids.csv")
 ```
 
-### 15.3 Load in R a dataset file from a url
+### 15.5 Load in R a dataset file from a url
 
 ```{r, eval=FALSE}
-read.table("http://data.princeton.edu/wws509/datasets/effort.dat")
+read.table("http://flavioazevedo.github.io/blog/R-Introduction-Course/Datasets/sexualat.dat")
 ```
 
-### 15.4 Load in R Excel Files
+### 15.5 Load in R Excel .xls Files
 
 Quite frequently, the sample data is in Excel format, and needs to be imported into R prior to use. For this, we can use the function read.xls from the gdata package. It reads from an Excel spreadsheet and returns a data frame. The following shows how to load an Excel spreadsheet named "mydata.xls". This method requires Perl runtime to be present in the system, which you [can download from this link](https://www.perl.org/get.html).
 
@@ -162,45 +164,45 @@ If you would like to know more about loading data into R, [see this link](https:
 
 The official CRAN manual on importing/exporting data [can be found here](https://cran.r-project.org/doc/manuals/r-release/R-data.html)
 
-### 15.6 Exporting Data
+### 16 Exporting Data
 
 There are numerous methods for exporting R objects into other formats . For SPSS, SAS and Stata. you will need to load the foreign packages. For Excel, you will need the xlsReadWrite package.
 
-#### 15.6.1 To A Tab Delimited Text File
+#### 16.1 To A Tab Delimited Text File
 
 ```{r, eval=FALSE}
 write.table(mydata, "c:/mydata.txt", sep="\t")
 ```
 
-####  15.6.2 To an Excel Spreadsheet
+####  16.2 To an Excel Spreadsheet
 
 ```{r, eval=FALSE}
 library(xlsx)
 write.xlsx(mydata, "c:/mydata.xlsx")
 ```
 
-####  15.6.3 To SPSS
+####  16.3 To SPSS
 
 ```{r, eval=FALSE}
 library(foreign)
 write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sps",   package="SPSS")
 ```
 
-####  15.6.4 To SAS
+####  16.4 To SAS
 
 ```{r, eval=FALSE}
 library(foreign)
 write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sas",   package="SAS")
 ```
 
-####  15.6.5 To Stata
+####  16.5 To Stata
 
 ```{r, eval=FALSE}
 library(foreign)
 write.dta(mydata, "c:/mydata.dta")
 ```
 
-####  15.6.6 .RDA or RData 
+####  16.6 .RDA or RData 
 
 If your data file is one that you have saved in R as an .rdata file, you can read it in as follows:
 

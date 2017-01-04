@@ -924,7 +924,9 @@ cat("\f")</code></pre>
 </button>
 <pre style=""><code class="source r">setwd("C:/Users/myusername/folder/R Workshop/Datasets")</code></pre>
 </div>
-<h3 id="load-in-r-.txt-and-.dat">15.1 Load in R <em>.txt and </em>.dat</h3>
+<h3 id="datasets">15.1 Datasets</h3>
+<p>For the purposes of this lessons, some datasets are available for your to download, <strong>place in your working directory</strong> and load in R. <a href="https://github.com/flavioazevedo/flavioazevedo.github.io/tree/master/blog/R-Introduction-Course/Datasets">Please follow this link</a>.</p>
+<h3 id="load-in-r-.txt-and-.dat">15.2 Load in R <em>.txt and </em>.dat</h3>
 <p>For these file extensions you want to use the read.table() function</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -932,17 +934,17 @@ cat("\f")</code></pre>
 </button>
 <pre style=""><code class="source r">dat <- read.table("pbcseq.dat")</code></pre>
 </div>
-You also want to check if the number of columns is the same for all rows.
+<p>You also want to check if the number of columns is the same for all rows.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">cf <- count.fields("pbcseq.dat")
 cf
-# unique(cf) # find number of unique observations on your vector all(cf ==
-# 19) # Alternatevely, check if all are 19</code></pre>
+# unique(cf) find number of unique observations on your vector all(cf == 19)
+# Alternatevely, check if all are 19</code></pre>
 </div>
-<h4 id="coding-missing-data">15.1.2 Coding Missing data</h4>
+<h3 id="coding-missing-data">15.3 Coding Missing data</h3>
 <p>Below we learn how to define &quot;Missing data&quot; while loading data in, For example, in our file pbcseq.dat missing data was codded as &quot;.&quot;. In R, however, missing is coded as &quot;NA&quot;s, so we need to make sure to tell our read.table() function about that difference.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -950,28 +952,28 @@ cf
 </button>
 <pre style=""><code class="source r">dat <- read.table("pbcseq.dat", na.strings = ".")</code></pre>
 </div>
-<h4 id="make-sure-to-include-the-header">15.1.3 Make sure to include the header</h4>
+<h4 id="make-sure-to-include-the-header">15.3.1 Make sure to include the header</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">dat <- read.table("pbcseq.dat", header = TRUE, na.strings = ".")</code></pre>
 </div>
-<h3 id="load-in-r-.csv">15.2 Load in R *.csv</h3>
+<h3 id="load-in-r-.csv">15.4 Load in R *.csv</h3>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">dat <- read.csv("C:/Users/Flavio/Documents/Courses/R/Data/aids.csv")</code></pre>
+<pre style=""><code class="source r">dat <- read.csv("aids.csv")</code></pre>
 </div>
-<h3 id="load-in-r-a-dataset-file-from-a-url">15.3 Load in R a dataset file from a url</h3>
+<h3 id="load-in-r-a-dataset-file-from-a-url">15.5 Load in R a dataset file from a url</h3>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">read.table("http://data.princeton.edu/wws509/datasets/effort.dat")</code></pre>
+<pre style=""><code class="source r">read.table("http://flavioazevedo.github.io/blog/R-Introduction-Course/Datasets/sexualat.dat")</code></pre>
 </div>
-<h3 id="load-in-r-excel-files">15.4 Load in R Excel Files</h3>
+<h3 id="load-in-r-excel-.xls-files">15.5 Load in R Excel .xls Files</h3>
 <p>Quite frequently, the sample data is in Excel format, and needs to be imported into R prior to use. For this, we can use the function read.xls from the gdata package. It reads from an Excel spreadsheet and returns a data frame. The following shows how to load an Excel spreadsheet named &quot;mydata.xls&quot;. This method requires Perl runtime to be present in the system, which you <a href="https://www.perl.org/get.html">can download from this link</a>.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
@@ -1002,16 +1004,16 @@ dat <- read.spss("myfile", to.data.frame = TRUE)
 </div>
 <p>If you would like to know more about loading data into R, <a href="https://www.r-bloggers.com/importing-data-into-r-part-two/">see this link</a>.</p>
 <p>The official CRAN manual on importing/exporting data <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">can be found here</a></p>
-<h3 id="exporting-data">15.6 Exporting Data</h3>
+<h3 id="exporting-data">16 Exporting Data</h3>
 <p>There are numerous methods for exporting R objects into other formats . For SPSS, SAS and Stata. you will need to load the foreign packages. For Excel, you will need the xlsReadWrite package.</p>
-<h4 id="to-a-tab-delimited-text-file">15.6.1 To A Tab Delimited Text File</h4>
+<h4 id="to-a-tab-delimited-text-file">16.1 To A Tab Delimited Text File</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
 <pre style=""><code class="source r">write.table(mydata, "c:/mydata.txt", sep = "\t")</code></pre>
 </div>
-<h4 id="to-an-excel-spreadsheet">15.6.2 To an Excel Spreadsheet</h4>
+<h4 id="to-an-excel-spreadsheet">16.2 To an Excel Spreadsheet</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1019,7 +1021,7 @@ dat <- read.spss("myfile", to.data.frame = TRUE)
 <pre style=""><code class="source r">library(xlsx)
 write.xlsx(mydata, "c:/mydata.xlsx")</code></pre>
 </div>
-<h4 id="to-spss">15.6.3 To SPSS</h4>
+<h4 id="to-spss">16.3 To SPSS</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1027,7 +1029,7 @@ write.xlsx(mydata, "c:/mydata.xlsx")</code></pre>
 <pre style=""><code class="source r">library(foreign)
 write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sps", package = "SPSS")</code></pre>
 </div>
-<h4 id="to-sas">15.6.4 To SAS</h4>
+<h4 id="to-sas">16.4 To SAS</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1035,7 +1037,7 @@ write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sps", package = "SPSS")</code>
 <pre style=""><code class="source r">library(foreign)
 write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sas", package = "SAS")</code></pre>
 </div>
-<h4 id="to-stata">15.6.5 To Stata</h4>
+<h4 id="to-stata">16.5 To Stata</h4>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
@@ -1043,7 +1045,7 @@ write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sas", package = "SAS")</code><
 <pre style=""><code class="source r">library(foreign)
 write.dta(mydata, "c:/mydata.dta")</code></pre>
 </div>
-<h4 id="rda-or-rdata">15.6.6 .RDA or RData</h4>
+<h4 id="rda-or-rdata">16.6 .RDA or RData</h4>
 <p>If your data file is one that you have saved in R as an .rdata file, you can read it in as follows:</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
