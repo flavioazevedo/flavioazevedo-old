@@ -1,0 +1,89 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn about how to ask for help in R. This is probably the most important skill to learn in R.
+
+## 17. Help, Hilfe, Au Secours!
+
+R is very (very!) complete as a statistical language. As such, it has many functions, and many ways to achieve wanted results. For this reason I believe one of the most important aspects of learning R is to know how to find help for your problem. There are several ways you can do this, from inside and outside RStudio and R.
+
+R function                 |  Description
+-------------------------- | --------------------
+?function                  | help about a specific function 
+??function                 | search the Help System
+help("R function")         | primary interface to the help system
+help.search("R function")  | search the Help System
+library(help = "package name")   | opens R documentation
+apropos("R function")      | list all functions containing string foo
+example("R function")      |  show an example of function foo
+help(datasetname)          |  open details on a sample dataset
+vignette("package name")   | opens Vignette of R package
+vignette()                 | show all available vingettes
+browseVignettes()          |  list of vignettes from installed packages 
+
+
+## How to use a given technique in R for the first time
+
+Sometimes you know what you want to do, say, fit a Item Response Theory model to your data, but you do not know how to start. In that case, **[CRAN Task Views](http://cran.us.r-project.org/web/views/)** is definately a place to start. It summarize R resources in particular areas of application, helping your to navigate the maze of thousands of R packages. There you find a list with general topics, for example, **[Psychometrics](http://cran.us.r-project.org/web/views/Psychometrics.html)** or **[Social Sciences](http://cran.us.r-project.org/web/views/SocialSciences.html)**, which contains all R packages, their functionality, and a brief explanation. The importance and utility of CRAN Task Views cannot be overestimated, and it is the first place I go in these circumstances.
+
+## Error messages
+
+Sometimes you try to run a function and you receive an **error message**. If it is not immediatly understandable what the problem is from the message, it can be particularly helpful to paste an error message into a search engine to find out whether others have solved a problem that you encountered. In specific, I find particularly useful to use Google with "R" or "in R" and the name of an R package, function (or both). Say, for example, "How to summarize data per group in R". 
+
+## Asking for Help
+
+If you find that you can't answer a question or solve a problem yourself, you can ask others for help on the internet. For example, there is a [**dedicated Chat room**](http://chat.stackoverflow.com/rooms/25312/r-public) for discussion of all things about and related to the R statistical programming language. There you can simply ask questions away. I know I have gotten pretty good answers back in last than 30s.
+
+
+In case you have a statistical question, or a question that is not purely R-related, there are several other websites in which you can find help.
+
+
+  Website                  |  Description
+-------------------------- | --------------------
+[Cross Validated](http://stats.stackexchange.com/) | Statistics, data analysis
+[Stack Overflow](http://stackoverflow.com/questions/tagged/r) | Data Science and Machine learning
+[Data Science *beta*](http://datascience.stackexchange.com/) | Data Science and Machine learning
+[Bioconductor.org](http://support.bioconductor.org/) | Data Science focused on Bioinformatics
+[Biostars.org](http://www.biostars.org/) | Bioinformatics-specific questions
+
+
+#### **Etiquette 1**: In order to ask a question effectively, it helps to phrase the question clearly, and, if you're trying to solve a problem, to include a small, self-contained, reproducible example of the problem that others can execute. For information on how to ask questions, **[see the R posting guide](https://www.r-project.org/posting-guide.html)**, and the document about **[how to create reproducible examples for R on Stack Overflow](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)**.
+
+#### **Etiquette 2**: Do not cross-post among any of these venues.
+
+## R Email Lists
+
+The R Project maintains a number of _subscription-based email lists_ for posing and answering questions about R, including the general R-help email list, the R-devel list for R code development, and R-package-devel list for developers of CRAN packages; lists for announcements about R and R packages; and a variety of more specialized lists. Before posing a question on one of these lists, please read the R mailing list instructions and the posting guide. Here's the [link](https://www.r-project.org/mail.html).
+
+
+## R FAQs (Frequently Asked Questions)
+
+There are three primary FAQ listings which are periodically updated to reflect very commonly asked questions by R users. There is a [Main R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html), a [Windows specific R FAQ](https://cran.r-project.org/bin/windows/base/rw-FAQ.html) and a [Mac OS (OS X) specific R FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html).
+
+\pagebreak
+

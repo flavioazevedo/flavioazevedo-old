@@ -209,3 +209,7 @@ If your data file is one that you have saved in R as an .rdata file, you can rea
 ```{r, eval=FALSE}
 load("<FileName>.RDA")
 ```
+
+### 16.7 Loading data in R via menu
+
+In RStudio, you have the option to download data via the menu as well. A good - and visual - tutorial on how to do it [can be found here](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)

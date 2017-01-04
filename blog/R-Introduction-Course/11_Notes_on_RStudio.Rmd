@@ -1,0 +1,129 @@
+---
+title: ""
+date: "`r Sys.Date()`"
+output:
+  knitrBootstrap::bootstrap_document:
+    theme: simplex
+    highlight: zenburn
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE,
+               bootstrap.show.output=FALSE)
+opts_knit$set(width=75)
+```
+
+In this lesson we learn about a few insider tips which hopefully will facilitate learning R. 
+
+## 18. Notes on RStudio
+
+### Using auto-complete in RStudio. 
+
+In many circumstances you can press Tab to let RStudio provide a suggestion as to what you mean. For example, type the first part of the name of a variable or function, and by pressing Tab will list the options available (or even outright complete the name if there is just one option). 
+
+### Project management in RStudio
+
+Using projects in RStudio is a powerful means of working on several projects at the same time. Each of the projects has its own:
+
+### Version control repository
+
+Version control is an important tool in tracking the progression of your software. In RStudio, we will be using git to version control our code. A  git repository is associated with an RStudio project, so each project has its own git repository.
+
+### RStudio projects
+
+I recommend creating a RStudio project for each of the tutorials you will be doing. This makes it easy to separate the code between the tutorials, and will make it easy for you to find back what you wrote regarding a particular tutorial.
+
+#### Create a new RStudio project
+ * Select File > New project.
+ * Select New Directory.
+ * Select Empty project.
+ * Select a name and sub directory of your project.
+
+Create another RStudio project, and try switching between them. Create a number of R scripts as a part of the project. Mind to save them and name them. And you can switch back and forth.
+
+If you are interested in knowing more features of RStudio, [visit this link](https://www.rstudio.com/rviews/2016/11/11/easy-tricks-you-mightve-missed/)
+
+## 19. R packages: Personal recommendations for beginers
+
+Below you find a function to batch the process of installation of 'selected' R packages in your machine. Here the a link to the below [R Packages descriptions](http://web.stanford.edu/group/ssds/cgi-bin/drupal/files/Guides/Guide%20to%20R%20Packages_2.pdf)
+
+
+```{r, eval=FALSE}
+libs=c(
+  # General
+  "devtools", "foreign", "car", "mvtnorm", "MASS",
+  # Linear (Mixed) Models
+  "nlme","lme4", "lmerTest", "glmnet", "lmtest", "multcomp",
+  # To report results
+  "knitr", "markdown", "formatR", "shiny", "rmarkdown", "rmdformats",
+  # R commander
+  "Rcmdr",
+  # Psychology Methods
+  "psych", "Hmisc", "sem", "scales",
+  # Data manipulation
+  "reshape2", "plyr", "dplyr", "tidyr", "stringr", "lubridate",
+  "xtable", "manipulate",
+  # Visualize & Graphing data
+  "ggplot2", "lattice", "colorspace", "RColorBrewer", "gplots",
+  "mosaic", "vcd","ggvis", "latticeExtra",
+  # Time Series
+  "timeSeries", "timeDate", "tseries", "xts", "zoo"# time series
+)
+
+type=getOption("pkgType")                           
+
+CheckInstallPackage <- function(packages, repos="http://cran.r-project.org",
+                                depend=c("Depends", "Imports"), ...) {
+  installed=as.data.frame(installed.packages())
+  for(p in packages) {
+    if(is.na(charmatch(p, installed[,1]))) { 
+      install.packages(p, repos=repos, dependencies=depend, ...) 
+    }
+  }
+} 
+CheckInstallPackage(packages=libs)
+
+```
+
+
+### 19.1 Other selections of _"best"_ R packages  [links]
+
+1. [Great R packages for data import, wrangling & visualization](http://www.computerworld.com/article/2921176/business-intelligence/great-r-packages-for-data-import-wrangling-visualization.html)
+
+2. [R packages I wish I knew about earlier](http://blog.yhat.com/posts/10-R-packages-I-wish-I-knew-about-earlier.html)
+
+
+3. [Quick list of useful R packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+
+## 20. Useful Resources [links]
+
+* Beginners' guides to R & RStudio 
+     + [Getting Started with R](https://support.rstudio.com/hc/en-us/articles/201141096-Getting-Started-with-R)
+     + [Stack Overflow R Resources](http://stackoverflow.com/tags/r/info)
+
+
+* R Style Guides 
+    + [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+    + [Hadley Wickham](http://r-pkgs.had.co.nz/style.html)
+    + [Code Conventions by Henrik Bengtsson, Berkeley](https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit)
+
+
+* R Markdown Cheat Sheets  [links]
+
+    + [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+    + [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+    

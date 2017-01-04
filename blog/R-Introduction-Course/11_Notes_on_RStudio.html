@@ -869,192 +869,89 @@
 <div class="row">
 
 </div>
-<p>In this lesson we learn about how to import data into R. This lesson was inspired on Datacamp's manuals on loading data in R, which you can find <a href="https://www.datacamp.com/community/tutorials/r-tutorial-read-excel-into-r#gs.7tKxgHg">here</a> and <a href="https://www.datacamp.com/community/tutorials/r-data-import-tutorial#gs.xrP7WZM">here</a></p>
-<p>Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green &quot;R Output&quot; button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find &quot;Code highlighting&quot; which changes how R code is displayed to you, and Toggle R code and Figures.</p>
-<h2 id="importing-data-into-r">15. Importing data into R</h2>
-<p>Instead of creating your dataset - as we did in the last lesson - it is often necessary to import data into R, so you start working on your analysis. Before we move on and learn how to load data into R, it might be useful to go over the below checklist which can make it easier to import the data <em>correctly</em>, and potentially avoid loading problems.</p>
+<p>In this lesson we learn about a few insider tips which hopefully will facilitate learning R.</p>
+<h2 id="notes-on-rstudio">18. Notes on RStudio</h2>
+<h3 id="using-auto-complete-in-rstudio.">Using auto-complete in RStudio.</h3>
+<p>In many circumstances you can press Tab to let RStudio provide a suggestion as to what you mean. For example, type the first part of the name of a variable or function, and by pressing Tab will list the options available (or even outright complete the name if there is just one option).</p>
+<h3 id="project-management-in-rstudio">Project management in RStudio</h3>
+<p>Using projects in RStudio is a powerful means of working on several projects at the same time. Each of the projects has its own:</p>
+<h3 id="version-control-repository">Version control repository</h3>
+<p>Version control is an important tool in tracking the progression of your software. In RStudio, we will be using git to version control our code. A git repository is associated with an RStudio project, so each project has its own git repository.</p>
+<h3 id="rstudio-projects">RStudio projects</h3>
+<p>I recommend creating a RStudio project for each of the tutorials you will be doing. This makes it easy to separate the code between the tutorials, and will make it easy for you to find back what you wrote regarding a particular tutorial.</p>
+<h4 id="create-a-new-rstudio-project">Create a new RStudio project</h4>
 <ul>
-<li>In spreadsheets, the first row is usually reserved for the header. while the first column is used to identify the sampling unit (e.g., persons, cases).</li>
-<li>While naming variables you want to avoid names, values or fields with blank spaces. If you do this, you incur in the risk of each word being interpreted as a separate variable, resulting in errors that are related to the number of elements per line in your data set.</li>
-<li>If you want to concatenate words, try inserting a '.' or a '_' in between to words instead of a space.</li>
-<li>Short names are preferred over longer names</li>
-<li>Try to avoid using names that are known functions such as mean, t, sd, log, etc.</li>
-<li>Try to avoid using names that contain symbols such as ?, $,%, ^, &amp;, *, (, ),-,?,,,&lt;,&gt;, /, |, , [ ,] ,{, }, and #.</li>
-<li>Delete any comments that you have made in your Excel file to avoid extra columns or NA's to be added to your file</li>
-<li>Make sure that any missing values in your data set are indicated with NA, or that you specify this when loading the data.</li>
-<li>If you have other statistical software that you use - and since industry standard softwares such as SPSS, SAS, STATA, MPlus are all capable of saving data in .csv format - perhaps the easiest way to load data in R is through saving the dataset into a .csv format.</li>
+<li>Select File &gt; New project.</li>
+<li>Select New Directory.</li>
+<li>Select Empty project.</li>
+<li>Select a name and sub directory of your project.</li>
 </ul>
-<h3 id="preparing-your-r-workspace">15.1 Preparing Your R Workspace</h3>
-<p>In R, you want to make sure that the Enviroment and loaded packages from another session does not - by accident - interfere with the current analysis. So, it might be a good idea to start with a clean slate. One way of doing this is by typing in the below code in your console.</p>
+<p>Create another RStudio project, and try switching between them. Create a number of R scripts as a part of the project. Mind to save them and name them. And you can switch back and forth.</p>
+<p>If you are interested in knowing more features of RStudio, <a href="https://www.rstudio.com/rviews/2016/11/11/easy-tricks-you-mightve-missed/">visit this link</a></p>
+<h2 id="r-packages-personal-recommendations-for-beginers">19. R packages: Personal recommendations for beginers</h2>
+<p>Below you find a function to batch the process of installation of 'selected' R packages in your machine. Here the a link to the below <a href="http://web.stanford.edu/group/ssds/cgi-bin/drupal/files/Guides/Guide%20to%20R%20Packages_2.pdf">R Packages descriptions</a></p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r"># This prompts garbage collector to take place.  This is useful to prompt R
-# to return memory to the operating system.  gc() also return a summary of
-# the occupy memory
-gc()
+<pre style=""><code class="source r">libs=c(
+  # General
+  "devtools", "foreign", "car", "mvtnorm", "MASS",
+  # Linear (Mixed) Models
+  "nlme","lme4", "lmerTest", "glmnet", "lmtest", "multcomp",
+  # To report results
+  "knitr", "markdown", "formatR", "shiny", "rmarkdown", "rmdformats",
+  # R commander
+  "Rcmdr",
+  # Psychology Methods
+  "psych", "Hmisc", "sem", "scales",
+  # Data manipulation
+  "reshape2", "plyr", "dplyr", "tidyr", "stringr", "lubridate",
+  "xtable", "manipulate",
+  # Visualize & Graphing data
+  "ggplot2", "lattice", "colorspace", "RColorBrewer", "gplots",
+  "mosaic", "vcd","ggvis", "latticeExtra",
+  # Time Series
+  "timeSeries", "timeDate", "tseries", "xts", "zoo"# time series
+)
 
-# Restarts the R session for a clean slate
-.rs.restartR()
+type=getOption("pkgType")                           
 
-# Unloads all previously loaded packages It may give an error in the lapply
-# if there were no loaded packages
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-
-# This removes all R objects from the environment
-rm(list = ls(all = TRUE))
-
-# And this just cleans the console for a fresh start
-cat("\f")</code></pre>
+CheckInstallPackage <- function(packages, repos="http://cran.r-project.org",
+                                depend=c("Depends", "Imports"), ...) {
+  installed=as.data.frame(installed.packages())
+  for(p in packages) {
+    if(is.na(charmatch(p, installed[,1]))) { 
+      install.packages(p, repos=repos, dependencies=depend, ...) 
+    }
+  }
+} 
+CheckInstallPackage(packages=libs)</code></pre>
 </div>
-<p>Next, you might also find it handy to know where your working directory is set at the moment:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">getwd()</code></pre>
-</div>
-<p>And you might consider changing the path that you get as a result of this function, maybe to the folder in which you have stored your data set (note the bars are inverted):</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">setwd("C:/Users/myusername/folder/R Workshop/Datasets")</code></pre>
-</div>
-<h3 id="datasets">15.1 Datasets</h3>
-<p>For the purposes of this lessons, some datasets are available for your to download, <strong>place in your working directory</strong> and load in R. <a href="https://github.com/flavioazevedo/flavioazevedo.github.io/tree/master/blog/R-Introduction-Course/Datasets">Please follow this link</a>.</p>
-<h3 id="load-in-r-.txt-and-.dat">15.2 Load in R <em>.txt and </em>.dat</h3>
-<p>For these file extensions you want to use the read.table() function</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">dat <- read.table("pbcseq.dat")</code></pre>
-</div>
-<p>You also want to check if the number of columns is the same for all rows.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">cf <- count.fields("pbcseq.dat")
-cf
-# unique(cf) find number of unique observations on your vector all(cf == 19)
-# Alternatevely, check if all are 19</code></pre>
-</div>
-<h3 id="coding-missing-data">15.3 Coding Missing data</h3>
-<p>Below we learn how to define &quot;Missing data&quot; while loading data in, For example, in our file pbcseq.dat missing data was codded as &quot;.&quot;. In R, however, missing is coded as &quot;NA&quot;s, so we need to make sure to tell our read.table() function about that difference.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">dat <- read.table("pbcseq.dat", na.strings = ".")</code></pre>
-</div>
-<h4 id="make-sure-to-include-the-header">15.3.1 Make sure to include the header</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">dat <- read.table("pbcseq.dat", header = TRUE, na.strings = ".")</code></pre>
-</div>
-<h3 id="load-in-r-.csv">15.4 Load in R *.csv</h3>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">dat <- read.csv("aids.csv")</code></pre>
-</div>
-<h3 id="load-in-r-a-dataset-file-from-a-url">15.5 Load in R a dataset file from a url</h3>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">read.table("http://flavioazevedo.github.io/blog/R-Introduction-Course/Datasets/sexualat.dat")</code></pre>
-</div>
-<h3 id="load-in-r-excel-.xls-files">15.5 Load in R Excel .xls Files</h3>
-<p>Quite frequently, the sample data is in Excel format, and needs to be imported into R prior to use. For this, we can use the function read.xls from the gdata package. It reads from an Excel spreadsheet and returns a data frame. The following shows how to load an Excel spreadsheet named &quot;mydata.xls&quot;. This method requires Perl runtime to be present in the system, which you <a href="https://www.perl.org/get.html">can download from this link</a>.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(gdata)  # load gdata package 
-dat <- read.xls("mydata.xls")  # read from first sheet
-# help(read.xls) # documentation</code></pre>
-</div>
-<p>Alternatively, we can use the function loadWorkbook from the XLConnect package to read the entire workbook, and then load the worksheets with readWorksheet. The XLConnect package requires Java to be pre-installed, which you <a href="https://www.java.com/en/download/">can download from this link</a>.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(XLConnect)
-wk <- loadWorkbook("mydata.xls")
-df <- readWorksheet(wk, sheet = "Sheet1")</code></pre>
-</div>
-<h3 id="load-in-r-spss-files">15.5 Load in R SPSS Files</h3>
-<p>For the data files in SPSS format, it can be opened with the function read.spss from the foreign package. There is a &quot;to.data.frame&quot; option for choosing whether a data frame is to be returned. By default, it returns a list of components instead.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(foreign)  # load the foreign package 
-dat <- read.spss("myfile", to.data.frame = TRUE)
-# help(read.spss) # documentation</code></pre>
-</div>
-<p>If you would like to know more about loading data into R, <a href="https://www.r-bloggers.com/importing-data-into-r-part-two/">see this link</a>.</p>
-<p>The official CRAN manual on importing/exporting data <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">can be found here</a></p>
-<h3 id="exporting-data">16 Exporting Data</h3>
-<p>There are numerous methods for exporting R objects into other formats . For SPSS, SAS and Stata. you will need to load the foreign packages. For Excel, you will need the xlsReadWrite package.</p>
-<h4 id="to-a-tab-delimited-text-file">16.1 To A Tab Delimited Text File</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">write.table(mydata, "c:/mydata.txt", sep = "\t")</code></pre>
-</div>
-<h4 id="to-an-excel-spreadsheet">16.2 To an Excel Spreadsheet</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(xlsx)
-write.xlsx(mydata, "c:/mydata.xlsx")</code></pre>
-</div>
-<h4 id="to-spss">16.3 To SPSS</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(foreign)
-write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sps", package = "SPSS")</code></pre>
-</div>
-<h4 id="to-sas">16.4 To SAS</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(foreign)
-write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sas", package = "SAS")</code></pre>
-</div>
-<h4 id="to-stata">16.5 To Stata</h4>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">library(foreign)
-write.dta(mydata, "c:/mydata.dta")</code></pre>
-</div>
-<h4 id="rda-or-rdata">16.6 .RDA or RData</h4>
-<p>If your data file is one that you have saved in R as an .rdata file, you can read it in as follows:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">load("<FileName>.RDA")</code></pre>
-</div>
-<h3 id="loading-data-in-r-via-menu">16.7 Loading data in R via menu</h3>
-In RStudio, you have the option to download data via the menu as well. A good - and visual - tutorial on how to do it <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio">can be found here</a>
+<h3 id="other-selections-of-best-r-packages-links">19.1 Other selections of <em>&quot;best&quot;</em> R packages [links]</h3>
+<ol style="list-style-type: decimal">
+<li><p><a href="http://www.computerworld.com/article/2921176/business-intelligence/great-r-packages-for-data-import-wrangling-visualization.html">Great R packages for data import, wrangling &amp; visualization</a></p></li>
+<li><p><a href="http://blog.yhat.com/posts/10-R-packages-I-wish-I-knew-about-earlier.html">R packages I wish I knew about earlier</a></p></li>
+<li><p><a href="https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages">Quick list of useful R packages</a></p></li>
+</ol>
+<h2 id="useful-resources-links">20. Useful Resources [links]</h2>
+<ul>
+<li>Beginners' guides to R &amp; RStudio
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/201141096-Getting-Started-with-R">Getting Started with R</a></li>
+<li><a href="http://stackoverflow.com/tags/r/info">Stack Overflow R Resources</a></li>
+</ul></li>
+<li>R Style Guides
+<ul>
+<li><a href="https://google.github.io/styleguide/Rguide.xml">Google's R Style Guide</a></li>
+<li><a href="http://r-pkgs.had.co.nz/style.html">Hadley Wickham</a></li>
+<li><a href="https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit">Code Conventions by Henrik Bengtsson, Berkeley</a></li>
+</ul></li>
+<li><p>R Markdown Cheat Sheets [links]</p>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheat Sheet</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a></li>
+</ul>
 </div>
 </div>
 <div class="navbar navbar-fixed-bottom navbar-inverse">
@@ -1071,6 +968,21 @@ In RStudio, you have the option to download data via the menu as well. A good - 
 Toggle
 </p>
 </li>
+<li class="dropup">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class="dropdown-header">
+Languages
+</li>
+<li class="active">
+<a href="#" class="toggle-global source R" type="source.R">R</a>
+</li>
+<li>
+<a href="#" type="all-source" class="toggle-global">All</a>
+</li>
+</ul>
+</li></li>
+</ul>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>
 </li>
