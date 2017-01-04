@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="date" content="2017-01-03" />
+  <meta name="date" content="2017-01-04" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -869,624 +869,187 @@
 <div class="row">
 
 </div>
-<p>In this lesson we learn about datasets. How to create and manipulate it.</p>
+<p>In this lesson we learn about how to import data into R. This lesson was inspired on Datacamp's manuals on loading data in R, which you can find <a href="https://www.datacamp.com/community/tutorials/r-tutorial-read-excel-into-r#gs.7tKxgHg">here</a> and <a href="https://www.datacamp.com/community/tutorials/r-data-import-tutorial#gs.xrP7WZM">here</a></p>
 <p>Remember: In this lesson, all R code is below the R Source button, while the output is hidden. To see it you will need to click on the green &quot;R Output&quot; button. At the bottom of the page, you will find a bar which allows you to change the theme of the webpage (changing colors and format) so it can easily adapt to your system and preferences. There you also find &quot;Code highlighting&quot; which changes how R code is displayed to you, and Toggle R code and Figures.</p>
-<h2 id="datasets">14. Datasets</h2>
-<h3 id="creating-data">14.1 Creating data</h3>
-<p>Often it is useful to learn how to create a dataset in R. Above we created one, which we will reproduce the code here. A dataset can be created in R with the function data.frame(), and we fill it with the variables we would like to create. We conveniently named our dataset <em>data</em>. Note that after we specified the function data.frame(), we can give each of the variables its own name. After that, we assign to that name our wanted values.</p>
-<p>We use set.seed() because it is a function in R that allows all 'pseudo-random' functions in R to yield the same results in different computers. It has the purpose of reproducibility. Otherwise, all of you would have different values for the pseudo-random values. Cool, right?</p>
+<h2 id="importing-data-into-r">15. Importing data into R</h2>
+<p>Instead of creating your dataset - as we did in the last lesson - it is often necessary to import data into R, so you start working on your analysis. Before we move on and learn how to load data into R, it might be useful to go over the below checklist which can make it easier to import the data <em>correctly</em>, and potentially avoid loading problems.</p>
+<ul>
+<li>In spreadsheets, the first row is usually reserved for the header. while the first column is used to identify the sampling unit (e.g., persons, cases).</li>
+<li>While naming variables you want to avoid names, values or fields with blank spaces. If you do this, you incur in the risk of each word being interpreted as a separate variable, resulting in errors that are related to the number of elements per line in your data set.</li>
+<li>If you want to concatenate words, try inserting a '.' or a '_' in between to words instead of a space.</li>
+<li>Short names are preferred over longer names</li>
+<li>Try to avoid using names that are known functions such as mean, t, sd, log, etc.</li>
+<li>Try to avoid using names that contain symbols such as ?, $,%, ^, &amp;, *, (, ),-,?,,,&lt;,&gt;, /, |, , [ ,] ,{, }, and #.</li>
+<li>Delete any comments that you have made in your Excel file to avoid extra columns or NA's to be added to your file</li>
+<li>Make sure that any missing values in your data set are indicated with NA, or that you specify this when loading the data.</li>
+<li>If you have other statistical software that you use - and since industry standard softwares such as SPSS, SAS, STATA, MPlus are all capable of saving data in .csv format - perhaps the easiest way to load data in R is through saving the dataset into a .csv format.</li>
+</ul>
+<h3 id="preparing-your-r-workspace">15.1 Preparing Your R Workspace</h3>
+<p>In R, you want to make sure that the Enviroment and loaded packages from another session does not - by accident - interfere with the current analysis. So, it might be a good idea to start with a clean slate. One way of doing this is by typing in the below code in your console.</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">set.seed(1234)
+<pre style=""><code class="source r"># This prompts garbage collector to take place.  This is useful to prompt R
+# to return memory to the operating system.  gc() also return a summary of
+# the occupy memory
+gc()
 
-data <- data.frame(                                             
-  Names   = c("Alan", "Brian", "Carlos", "Dalton", "Ethan", 
-              "Flora", "Gaia", "Helen", "Ingrid", "Jennifer"),
-  Age     = rpois(10, 30),
-  Height  = rnorm(10, 170, 10),
-  Weight  = rnorm(10, 70, 15),
-  Gender  = gl(2, 5, labels = c("Male", "Female")),
-  Courses = rpois(10, 2)
-)</code></pre>
-</div>
-<p>Now, we print our dataset in the R console with the function print()</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">print(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height   Weight Gender Courses
-1      Alan  23 170.6446 76.89384   Male       1
-2     Brian  31 179.5949 59.59420   Male       2
-3    Carlos  31 168.8971 48.27693   Male       0
-4    Dalton  25 164.8899 78.62134   Male       2
-5     Ethan  32 160.8880 54.64516   Male       0
-6     Flora  26 161.6283 69.77293 Female       4
-7      Gaia  35 194.1584 55.96077 Female       0
-8     Helen  26 171.3409 86.53446 Female       3
-9    Ingrid  27 165.0931 62.86610 Female       0
-10 Jennifer  20 165.5945 59.35840 Female       2
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height   Weight Gender Courses
-1      Alan  23 170.6446 76.89384   Male       1
-2     Brian  31 179.5949 59.59420   Male       2
-3    Carlos  31 168.8971 48.27693   Male       0
-4    Dalton  25 164.8899 78.62134   Male       2
-5     Ethan  32 160.8880 54.64516   Male       0
-6     Flora  26 161.6283 69.77293 Female       4
-7      Gaia  35 194.1584 55.96077 Female       0
-8     Helen  26 171.3409 86.53446 Female       3
-9    Ingrid  27 165.0931 62.86610 Female       0
-10 Jennifer  20 165.5945 59.35840 Female       2
-</code></pre>
-</div>
-<p>We can also print only the first three observations, to inspect big datasets.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">head(data, 3)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-1   Alan  23 170.6446 76.89384   Male       1
-2  Brian  31 179.5949 59.59420   Male       2
-3 Carlos  31 168.8971 48.27693   Male       0
-</code></pre>
-</div>
-<p>Or alternatively, we can also print the last 4 rows to see whether we created the data well.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">tail(data, 4)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height   Weight Gender Courses
-7      Gaia  35 194.1584 55.96077 Female       0
-8     Helen  26 171.3409 86.53446 Female       3
-9    Ingrid  27 165.0931 62.86610 Female       0
-10 Jennifer  20 165.5945 59.35840 Female       2
-</code></pre>
-</div>
-<p>Importantly, you can explore your data in a new window with the command View(). Note that there are two buttons on the left hand side: one which will pop-up the data in a new window, and the other that you can use to filter the cases you are interested in inspecting.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">View(data)</code></pre>
-</div>
-<p>Important note. All variables must have the same number of observations. In our case, 10. If I put one less name (I forgot to include Jennifer) it would give an error and the dataset would not be created. For example, in that case the following error would be returned:</p>
-<blockquote>
-<p>Error in data.frame(Names = c(&quot;Alan&quot;, &quot;Brian&quot;, &quot;Carlos&quot;, &quot;Dalton&quot;, &quot;Ethan&quot;, : arguments imply differing number of rows: 9, 10</p>
-</blockquote>
-<p>R is telling you where specifically - out of all your variables - the error is occurring , and also, its reason: &quot;<em>arguments imply differing number of rows: 9, 10</em>&quot;. In my eyes, it even gives you the solution: There are nine rows, but we need 10 to make it work.</p>
-<h3 id="indexing-or-data-manipulation">14.2 Indexing [or Data Manipulation]</h3>
-<p>Indexing is to select/subset parts of R objects. Let's take our data example to learn about indexing. There are many ways to do this. We will see several methods here, although they are not exhaustive.</p>
-<p>If we want to select only the Number of R Courses people have attended in the past, we use the operators '$' between the name of the data.frame and the name of the variable. (Note, it is important of this type of sub-setting that there are no spaces in the variable's name - e.g., &quot;Students names&quot;, rather choose either Students.names or Students_names).</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data$Courses</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r"> [1] 1 2 0 2 0 4 0 3 0 2
-</code></pre>
-</div>
-<p>Another way to do the same thing is to make reference to the dimensionality of the data. When we use this method, we utilize squared brackets in R: [] or [[]]. We know our data has 10 rows and 6 columns. So the data dimensions are 10 x 6. So, if I want only Gender, which is the sixth column, I can select it by typing:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[, 6]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r"> [1] 1 2 0 2 0 4 0 3 0 2
-</code></pre>
-</div>
-<p>In the same way, if we are interested in all the data collected for Carlos, we can select it by typing:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[3, ]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-3 Carlos  31 168.8971 48.27693   Male       0
-</code></pre>
-</div>
-<p>Consequently, if we want to know how many R courses Carlos has taken in the past, we can select it by typing:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[3, 6]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 0
-</code></pre>
-</div>
-<p>Now let's expand this a little bit by using logical conditions to select more complex subsets of data. For example, if we are interested in sub-setting the data for Females or for those are older than 25 years. So, let's start by selecting the observations for females. So, we need to say to R that we want all rows that fulfill the 'Gender = Female' condition. So, in R terms, we want all rows which the value for Gender is equal to Female. We translate this in the following way: data$Gender == 'Female'.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[data$Gender == "Female", ]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height   Weight Gender Courses
-6     Flora  26 161.6283 69.77293 Female       4
-7      Gaia  35 194.1584 55.96077 Female       0
-8     Helen  26 171.3409 86.53446 Female       3
-9    Ingrid  27 165.0931 62.86610 Female       0
-10 Jennifer  20 165.5945 59.35840 Female       2
-</code></pre>
-</div>
-<p>If we want older than 25 years old</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[data$Age > 25, ]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-2  Brian  31 179.5949 59.59420   Male       2
-3 Carlos  31 168.8971 48.27693   Male       0
-5  Ethan  32 160.8880 54.64516   Male       0
-6  Flora  26 161.6283 69.77293 Female       4
-7   Gaia  35 194.1584 55.96077 Female       0
-8  Helen  26 171.3409 86.53446 Female       3
-9 Ingrid  27 165.0931 62.86610 Female       0
-</code></pre>
-</div>
-<p>And, if we want both, Female and older than 25 years old</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">data[data$Gender == "Female" & data$Age > 25, ]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-6  Flora  26 161.6283 69.77293 Female       4
-7   Gaia  35 194.1584 55.96077 Female       0
-8  Helen  26 171.3409 86.53446 Female       3
-9 Ingrid  27 165.0931 62.86610 Female       0
-</code></pre>
-</div>
-<p>Another method is to use the subset() function in R. The subset function is available in base R and can be used to return subsets of a vector, matrix, or data frame which meet a particular condition.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Courses > 1)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height   Weight Gender Courses
-2     Brian  31 179.5949 59.59420   Male       2
-4    Dalton  25 164.8899 78.62134   Male       2
-6     Flora  26 161.6283 69.77293 Female       4
-8     Helen  26 171.3409 86.53446 Female       3
-10 Jennifer  20 165.5945 59.35840 Female       2
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Height < 178 & Weight > 65)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-1   Alan  23 170.6446 76.89384   Male       1
-4 Dalton  25 164.8899 78.62134   Male       2
-6  Flora  26 161.6283 69.77293 Female       4
-8  Helen  26 171.3409 86.53446 Female       3
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Age > 29)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">   Names Age   Height   Weight Gender Courses
-2  Brian  31 179.5949 59.59420   Male       2
-3 Carlos  31 168.8971 48.27693   Male       0
-5  Ethan  32 160.8880 54.64516   Male       0
-7   Gaia  35 194.1584 55.96077 Female       0
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Age < 23 | Courses > 5)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">      Names Age   Height  Weight Gender Courses
-10 Jennifer  20 165.5945 59.3584 Female       2
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Names == "Gaia")</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">  Names Age   Height   Weight Gender Courses
-7  Gaia  35 194.1584 55.96077 Female       0
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Gender == "Male", select = c(Age, Courses))</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">  Age Courses
-1  23       1
-2  31       2
-3  31       0
-4  25       2
-5  32       0
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">subset(data, Courses != 0 & Gender == "Female" & Age > 24)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">  Names Age   Height   Weight Gender Courses
-6 Flora  26 161.6283 69.77293 Female       4
-8 Helen  26 171.3409 86.53446 Female       3
-</code></pre>
-</div>
-<p></p>
-<h2 id="indexing-vectors">14.3 Indexing vectors</h2>
-<p>Remember we created three vectors called <em>n.R.courses</em>, <em>height</em> and <em>height.female</em> on lesson 04 and 05 ? Lets use these to learn how to index vectors.</p>
-<p>If I would like to select my first observation of <em>n.R.courses</em>, I make use of square brackets.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">n.R.courses[1]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 1
-</code></pre>
-</div>
-<p>If I would like to select my first and my second observations of <em>n.R.courses</em>, I make use of the ':' operator, which denotes sequence. So, for R, I am effectively telling it I want observations from 1 to 2.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">n.R.courses[1:2]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 1 2
-</code></pre>
-</div>
-<p>What if I would like to select my first and my third observations of <em>n.R.courses</em>? Since you cannot use ':', you want to combine with the c() function the wanted observations.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">n.R.courses[c(1, 3)]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 1 0
-</code></pre>
-</div>
-<p>What if I would like to select my first, my third through fifth observations of <em>n.R.courses</em>?</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">n.R.courses[c(1, 3:5)]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 1 0 2 0
-</code></pre>
-</div>
-<p>What if I would like to know which are the observed heights are taller than 170 cm? In this case we can make use of logical operators. As reviewed above, we saw that logical operations return either TRUE or FALSE. So, we can use this as to 'select' the observations we want given a condition. So we just write it as above:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">height > 170</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] FALSE  TRUE  TRUE FALSE  TRUE
-</code></pre>
-</div>
-<p>Then, we put this condition inside the vector, which will return what we want.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">height[height > 170]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 172.8 180.8 174.3
-</code></pre>
-</div>
-<p>This is similar, inside R, as this:</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">height[c(FALSE, TRUE, TRUE, FALSE, TRUE)]</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 172.8 180.8 174.3
-</code></pre>
-</div>
-<p>Now, what if I would like to know which is the location in of observed heights are taller than 170 cm?</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">which(height > 170)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 2 3 5
-</code></pre>
-</div>
-<h2 id="understanding-your-data">14.4 Understanding your data</h2>
-<p>Let's assume we received this data from someone, and we have to analyze it. One of the first thing you need to do is to <em>understand</em> the basic characteristics of your data. How many variables/columns does it have? How many observations? What are the characteristics of each variable? And so on.</p>
-<h3 id="dimensions">Dimensions</h3>
-<p>Here you are asking R to return the number of rows and columns.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">dim(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] 10  6
-</code></pre>
-</div>
-<h3 id="variable-names">Variable names</h3>
-<p>Here you are asking R to return the names of each variable in your dataset.</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">names(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] "Names"   "Age"     "Height"  "Weight"  "Gender"  "Courses"
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">colnames(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">[1] "Names"   "Age"     "Height"  "Weight"  "Gender"  "Courses"
-</code></pre>
-</div>
-<h3 id="variables-classes">Variables classes</h3>
-<p>Here you get class of all the variables (columns) in your dataset</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">sapply(data, class)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">    Names       Age    Height    Weight    Gender   Courses 
- "factor" "integer" "numeric" "numeric"  "factor" "integer" 
-</code></pre>
-</div>
-<h3 id="structure-of-the-data">Structure of the data</h3>
-<p>Here you are asking R to return the characteristics of each variable in your dataset. It shows a summary of each variable, and the first observations. For example, it tells us that there are <em>10 obs. of 6 variables</em>. It also itemizes each variable by name, and displays the class of each variable. Gender, for example, is a factor with two levels, one for Male and another for Female. Levels are the different possible varieties of a factor. We could made out of Height one factor with levels &quot;tall&quot; and &quot;short&quot;. Names, for its turn has 10 levels because it only present unique entries (e.g., the different names for each one of our hypothesized participants)</p>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">str(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">'data.frame':  10 obs. of  6 variables:
- $ Names  : Factor w/ 10 levels "Alan","Brian",..: 1 2 3 4 5 6 7 8 9 10
- $ Age    : int  23 31 31 25 32 26 35 26 27 20
- $ Height : num  171 180 169 165 161 ...
- $ Weight : num  76.9 59.6 48.3 78.6 54.6 ...
- $ Gender : Factor w/ 2 levels "Male","Female": 1 1 1 1 1 2 2 2 2 2
- $ Courses: int  1 2 0 2 0 4 0 3 0 2
-</code></pre>
-</div>
-<h3 id="summaries-of-your-data">Summaries of your data</h3>
-<div class="row">
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">summary(data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">     Names        Age            Height          Weight         Gender 
- Alan   :1   Min.   :20.00   Min.   :160.9   Min.   :48.28   Male  :5  
- Brian  :1   1st Qu.:25.25   1st Qu.:164.9   1st Qu.:56.81   Female:5  
- Carlos :1   Median :26.50   Median :167.2   Median :61.23             
- Dalton :1   Mean   :27.60   Mean   :170.3   Mean   :65.25             
- Ethan  :1   3rd Qu.:31.00   3rd Qu.:171.2   3rd Qu.:75.11             
- Flora  :1   Max.   :35.00   Max.   :194.2   Max.   :86.53             
- (Other):4                                                             
-    Courses   
- Min.   :0.0  
- 1st Qu.:0.0  
- Median :1.5  
- Mean   :1.4  
- 3rd Qu.:2.0  
- Max.   :4.0  
-              
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r"># Best for continous variables
-psych::describe(data[, c("Age", "Height", "Weight", "Courses")])</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">        vars  n   mean    sd median trimmed   mad    min    max range skew
-Age        1 10  27.60  4.58  26.50   27.62  5.93  20.00  35.00 15.00 0.01
-Height     2 10 170.27 10.01 167.25  168.46  5.56 160.89 194.16 33.27 1.25
-Weight     3 10  65.25 12.23  61.23   64.71 11.21  48.28  86.53 38.26 0.35
-Courses    4 10   1.40  1.43   1.50    1.25  2.22   0.00   4.00  4.00 0.39
-        kurtosis   se
-Age        -1.29 1.45
-Height      0.48 3.16
-Weight     -1.39 3.87
-Courses    -1.37 0.45
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r"># Best for categorical variables
-Hmisc::describe(data[, c("Names", "Gender", "Courses")])</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">data[, c("Names", "Gender", "Courses")] 
+# Restarts the R session for a clean slate
+.rs.restartR()
 
- 3  Variables      10  Observations
----------------------------------------------------------------------------
-Names 
-      n missing  unique 
-     10       0      10 
+# Unloads all previously loaded packages It may give an error in the lapply
+# if there were no loaded packages
+pkgs <- names(sessionInfo()$otherPkgs)
+pkgs <- paste("package:", pkgs, sep = "")
+lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
 
-          Alan Brian Carlos Dalton Ethan Flora Gaia Helen Ingrid Jennifer
-Frequency    1     1      1      1     1     1    1     1      1        1
-%           10    10     10     10    10    10   10    10     10       10
----------------------------------------------------------------------------
-Gender 
-      n missing  unique 
-     10       0       2 
+# This removes all R objects from the environment
+rm(list = ls(all = TRUE))
 
-Male (5, 50%), Female (5, 50%) 
----------------------------------------------------------------------------
-Courses 
-      n missing  unique    Info    Mean 
-     10       0       5    0.92     1.4 
-
-           0  1  2  3  4
-Frequency  4  1  3  1  1
-%         40 10 30 10 10
----------------------------------------------------------------------------
-</code></pre>
+# And this just cleans the console for a fresh start
+cat("\f")</code></pre>
 </div>
-<h3 id="contingency-tables">Contingency tables</h3>
+<p>Next, you might also find it handy to know where your working directory is set at the moment:</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">xtabs(~Gender, data = data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">Gender
-  Male Female 
-     5      5 
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">xtabs(~Names, data = data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">Names
-    Alan    Brian   Carlos   Dalton    Ethan    Flora     Gaia    Helen 
-       1        1        1        1        1        1        1        1 
-  Ingrid Jennifer 
-       1        1 
-</code></pre>
-<button class="source R toggle btn btn-xs btn-primary">
-<span class="glyphicon glyphicon-chevron-down"></span> R source
-</button>
-<pre style=""><code class="source r">xtabs(~Courses, data = data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">Courses
-0 1 2 3 4 
-4 1 3 1 1 
-</code></pre>
+<pre style=""><code class="source r">getwd()</code></pre>
 </div>
-<h3 id="two-way-contingency-tables-for-categorical-data">Two-way contingency tables for categorical data</h3>
+<p>And you might consider changing the path that you get as a result of this function, maybe to the folder in which you have stored your data set (note the bars are inverted):</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">xtabs(~Courses + Gender, data = data)</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
-</button>
-<pre style="display:none"><code class="output r">       Gender
-Courses Male Female
-      0    2      2
-      1    1      0
-      2    2      1
-      3    0      1
-      4    0      1
-</code></pre>
+<pre style=""><code class="source r">setwd("C:/Users/myusername/folder/R Workshop/Datasets")</code></pre>
 </div>
-<p>This recipe creates a useful table showing the number of instances that belong to each class as well as the percentage that this represents from the entire dataset.</p>
+<h3 id="load-in-r-.txt-and-.dat">15.1 Load in R <em>.txt and </em>.dat</h3>
+<p>For these file extensions you want to use the read.table() function</p>
 <div class="row">
 <button class="source R toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style=""><code class="source r">cbind(Frequencies = table(data$Gender),
-      Percentage = prop.table(table(data$Gender))*100
-      )</code></pre>
-<button class="output R toggle btn btn-xs btn-success">
-<span class="glyphicon glyphicon-chevron-up"></span> R output
+<pre style=""><code class="source r">dat <- read.table("pbcseq.dat")</code></pre>
+</div>
+You also want to check if the number of columns is the same for all rows.
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
 </button>
-<pre style="display:none"><code class="output r">       Frequencies Percentage
-Male             5         50
-Female           5         50
-</code></pre>
+<pre style=""><code class="source r">cf <- count.fields("pbcseq.dat")
+cf
+# unique(cf) # find number of unique observations on your vector all(cf ==
+# 19) # Alternatevely, check if all are 19</code></pre>
+</div>
+<h4 id="coding-missing-data">15.1.2 Coding Missing data</h4>
+<p>Below we learn how to define &quot;Missing data&quot; while loading data in, For example, in our file pbcseq.dat missing data was codded as &quot;.&quot;. In R, however, missing is coded as &quot;NA&quot;s, so we need to make sure to tell our read.table() function about that difference.</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">dat <- read.table("pbcseq.dat", na.strings = ".")</code></pre>
+</div>
+<h4 id="make-sure-to-include-the-header">15.1.3 Make sure to include the header</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">dat <- read.table("pbcseq.dat", header = TRUE, na.strings = ".")</code></pre>
+</div>
+<h3 id="load-in-r-.csv">15.2 Load in R *.csv</h3>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">dat <- read.csv("C:/Users/Flavio/Documents/Courses/R/Data/aids.csv")</code></pre>
+</div>
+<h3 id="load-in-r-a-dataset-file-from-a-url">15.3 Load in R a dataset file from a url</h3>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">read.table("http://data.princeton.edu/wws509/datasets/effort.dat")</code></pre>
+</div>
+<h3 id="load-in-r-excel-files">15.4 Load in R Excel Files</h3>
+<p>Quite frequently, the sample data is in Excel format, and needs to be imported into R prior to use. For this, we can use the function read.xls from the gdata package. It reads from an Excel spreadsheet and returns a data frame. The following shows how to load an Excel spreadsheet named &quot;mydata.xls&quot;. This method requires Perl runtime to be present in the system, which you <a href="https://www.perl.org/get.html">can download from this link</a>.</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(gdata)  # load gdata package 
+dat <- read.xls("mydata.xls")  # read from first sheet
+# help(read.xls) # documentation</code></pre>
+</div>
+<p>Alternatively, we can use the function loadWorkbook from the XLConnect package to read the entire workbook, and then load the worksheets with readWorksheet. The XLConnect package requires Java to be pre-installed, which you <a href="https://www.java.com/en/download/">can download from this link</a>.</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(XLConnect)
+wk <- loadWorkbook("mydata.xls")
+df <- readWorksheet(wk, sheet = "Sheet1")</code></pre>
+</div>
+<h3 id="load-in-r-spss-files">15.5 Load in R SPSS Files</h3>
+<p>For the data files in SPSS format, it can be opened with the function read.spss from the foreign package. There is a &quot;to.data.frame&quot; option for choosing whether a data frame is to be returned. By default, it returns a list of components instead.</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(foreign)  # load the foreign package 
+dat <- read.spss("myfile", to.data.frame = TRUE)
+# help(read.spss) # documentation</code></pre>
+</div>
+<p>If you would like to know more about loading data into R, <a href="https://www.r-bloggers.com/importing-data-into-r-part-two/">see this link</a>.</p>
+<p>The official CRAN manual on importing/exporting data <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">can be found here</a></p>
+<h3 id="exporting-data">15.6 Exporting Data</h3>
+<p>There are numerous methods for exporting R objects into other formats . For SPSS, SAS and Stata. you will need to load the foreign packages. For Excel, you will need the xlsReadWrite package.</p>
+<h4 id="to-a-tab-delimited-text-file">15.6.1 To A Tab Delimited Text File</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">write.table(mydata, "c:/mydata.txt", sep = "\t")</code></pre>
+</div>
+<h4 id="to-an-excel-spreadsheet">15.6.2 To an Excel Spreadsheet</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(xlsx)
+write.xlsx(mydata, "c:/mydata.xlsx")</code></pre>
+</div>
+<h4 id="to-spss">15.6.3 To SPSS</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(foreign)
+write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sps", package = "SPSS")</code></pre>
+</div>
+<h4 id="to-sas">15.6.4 To SAS</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(foreign)
+write.foreign(mydata, "c:/mydata.txt", "c:/mydata.sas", package = "SAS")</code></pre>
+</div>
+<h4 id="to-stata">15.6.5 To Stata</h4>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">library(foreign)
+write.dta(mydata, "c:/mydata.dta")</code></pre>
+</div>
+<h4 id="rda-or-rdata">15.6.6 .RDA or RData</h4>
+<p>If your data file is one that you have saved in R as an .rdata file, you can read it in as follows:</p>
+<div class="row">
+<button class="source R toggle btn btn-xs btn-primary">
+<span class="glyphicon glyphicon-chevron-down"></span> R source
+</button>
+<pre style=""><code class="source r">load("<FileName>.RDA")</code></pre>
 </div>
 </div>
 </div>
@@ -1503,6 +1066,20 @@ Female           5         50
 <p class="navbar-text">
 Toggle
 </p>
+</li>
+<li class="dropup">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li class="dropdown-header">
+Languages
+</li>
+<li class="active">
+<a href="#" class="toggle-global source R" type="source.R">R</a>
+</li>
+<li>
+<a href="#" type="all-source" class="toggle-global">All</a>
+</li>
+</ul>
 </li>
 <li class="active">
 <a href="#" type="figure" class="toggle-global">Figures</a>
