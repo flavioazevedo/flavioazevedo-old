@@ -30,7 +30,7 @@ In this lesson we will learn about vectorized operations. **Remember**: In this 
 
 ## 10. Vectorized operations (Element-wise operations) and vector variables
 
-While R would make a great calculator, it is designed to help statisticians and data scientists deal with data. And data never comes with one data point point. Instead, data usually comes with several observations at a time for a given variable. So we are going to learn how to deal with these R objects.
+While R would make a great calculator, it is designed to help statisticians and data scientists deal with data. And data never comes with one data point. Instead, data usually comes with several observations at a time for a given variable. So we are going to learn how to deal with these R objects.
 
 Say I am interested in the relationship between height, weight, and gender of students with respect to the number of R workshops each student has taken. So I take a sample of size 10 out of the students population and I measure these students' height, weight, and ask about they gender, and how many R courses/workshops they attended. Then our data would look like this: 
 
