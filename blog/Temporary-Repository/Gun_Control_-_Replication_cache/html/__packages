@@ -1,0 +1,14 @@
+base
+psych
+ggplot2
+extrafont
+RColorBrewer
+gridExtra
+ggthemes
+carData
+car
+xtable
+likert
+plyr
+sjPlot
+bindrcpp
