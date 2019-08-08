@@ -13,7 +13,7 @@ navbar:
     - text: "Consulting"
       href: http://flavioazevedo.com/statistical-consulting/ 
   right:
-    - text: "Contact"
+    - text: "xContact"
       icon: fa-at
       href: mailto:azevedo@wiso.uni-koeln.de 
     - text: "GitHub"
